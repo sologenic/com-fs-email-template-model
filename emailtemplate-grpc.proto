@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package emailtemplate;
+
+option go_package = "github.com/sologenic/com-fs-email-template-model;emailtemplate";
+
+import "google/protobuf/empty.proto";
+import "emailtemplate.proto";
+import "sologenic/com-fs-utils-lib/models/metadata/metadata.proto";
+
+service EmailTemplateService {
+    rpc Get(EmailTemplateID) returns (EmailTemplate) {}
+    rpc List(Filter) returns (EmailTemplates) {}
+    rpc Upsert(EmailTemplate) returns (google.protobuf.Empty) {}
+    
+    // Delete a template to reset an org's template to the default
+    rpc Delete(EmailTemplate) returns (google.protobuf.Empty) {}   
+}
+
+message EmailTemplateID {
+    optional EmailTemplateType EmailTemplateType = 1;
+    optional string OrganizationID = 2;
+    optional metadata.Network Network = 3;
+}
+
+message Filter { 
+    optional EmailTemplateType Type = 1;
+    optional string OrganizationID = 2;
+    optional metadata.Network Network = 3;
+}

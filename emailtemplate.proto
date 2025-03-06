@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package emailtemplate;
+
+option go_package = "github.com/sologenic/com-fs-email-template-model;emailtemplate";
+
+import "sologenic/com-fs-utils-lib/models/metadata/metadata.proto";
+import "sologenic/com-fs-utils-lib/models/audit/audit.proto";
+
+// Key: OrganizationID-Network-EmailTemplateType
+message EmailTemplate {
+    EmailTemplateDetails EmailTemplate = 1;
+    metadata.MetaData MetaData = 2;
+    audit.Audit Audit = 3;
+}
+
+message EmailTemplateDetails {
+    EmailTemplateType Type = 1;
+    optional string OrganizationID = 2; // If not set, this is a default template
+    string Name = 3; // Display Name
+    string Subject = 4; // Email Subject
+    string HTML = 5; // HTML content
+    string Description = 6; // Description for internal use
+}
+
+enum EmailTemplateType {
+    NOT_USED_EMAIL_TEMPLATE_TYPE = 0;
+    // KYC Email Templates (configurable by each organization)
+    // Target: End User
+    KYC_APPROVED = 1;
+    KYC_REJECTED = 2;
+    KYC_NOT_PROCESSABLE_FOREVER = 3;
+    KYC_FIX_REQUEST = 4;
+    KYC_ADMIN_DENIED = 5;
+
+    // Organization Templates (configurable by Sologenic Admin)
+    // Target: Organization Admin
+    ORGANIZATION_ONBOARDING = 100;
+}
+
+message EmailTemplates {
+    repeated EmailTemplate EmailTemplates = 1;
+}
