@@ -1,4 +1,4 @@
-module github.com/sologenic/com-fs-admin-smart-contract-model
+module github.com/sologenic/com-fs-email-template-model
 
 go 1.23.3
 

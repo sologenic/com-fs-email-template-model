@@ -1,6 +1,6 @@
-# Smart contract
+# Email Template
 
-The smart contract proto provides all the functionality required to interact with the smart contract service.
+The email template proto provides all the functionality required to interact with the email template service.
 
 ## Client
 
@@ -10,8 +10,8 @@ The client for golang and typescript are provided in the `/client` directory.
 
 The client is self initializing. For this it requires the following environment variable:
 
-- `SMART_CONTRACT_STORE` - The host of the service. Host is in the format `host:port`
-- `SMART_CONTRACT_STORE_TESTING` - Starts the GRPC service in testmode with an in memory buffer. Presence of the variable with the value `TRUE` is required to put the client in test mode.
+- `EMAIL_TEMPLATE_STORE` - The host of the service. Host is in the format `host:port`
+- `EMAIL_TEMPLATE_STORE_TESTING` - Starts the GRPC service in testmode with an in memory buffer. Presence of the variable with the value `TRUE` is required to put the client in test mode.
 
 If the client is included and the non of the env variable is set, the client panics.
 
@@ -19,8 +19,8 @@ If the client is included and the non of the env variable is set, the client pan
 
 Once the proto file is updated, the following files need to be generated:
 
-* go - smart contract.pb.go, smart contract_grpc.pb.go
-* typescript - smart contract.ts
+* go - emailtemplate.pb.go, emailtemplate-grpc.pb.go
+* typescript - emailtemplate.ts
 
 Generating these files can be done by running a build script with following command, which will also generate a build dir and add newly generated files and dir to git commit.
 

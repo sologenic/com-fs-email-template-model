@@ -6,6 +6,6 @@ The package provides a wrapper to include the grpc service in your application.
 
 The client is self initializing. For this it requires the following environment variable:
 
-- `SMART_CONTRACT_STORE` - The host of the service. Host is in the format `host:port`
+- `EMAIL_TEMPLATE_STORE` - The host of the service. Host is in the format `host:port`
 
 If the client is included and the env variable is not set, the client panics.
