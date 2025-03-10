@@ -18,7 +18,7 @@ service EmailTemplateService {
 }
 
 message EmailTemplateID {
-    optional EmailTemplateType EmailTemplateType = 1;
+    EmailTemplateType EmailTemplateType = 1;
     optional string OrganizationID = 2;
     optional metadata.Network Network = 3;
 }

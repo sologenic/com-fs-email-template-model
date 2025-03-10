@@ -11,11 +11,11 @@ import { Empty } from "./google/protobuf/empty";
 import { networkFromJSON, networkToJSON } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export const protobufPackage = "emailtemplate";
 function createBaseEmailTemplateID() {
-    return { EmailTemplateType: undefined, OrganizationID: undefined, Network: undefined };
+    return { EmailTemplateType: 0, OrganizationID: undefined, Network: undefined };
 }
 export const EmailTemplateID = {
     encode(message, writer = _m0.Writer.create()) {
-        if (message.EmailTemplateType !== undefined) {
+        if (message.EmailTemplateType !== 0) {
             writer.uint32(8).int32(message.EmailTemplateType);
         }
         if (message.OrganizationID !== undefined) {
@@ -61,16 +61,14 @@ export const EmailTemplateID = {
     },
     fromJSON(object) {
         return {
-            EmailTemplateType: isSet(object.EmailTemplateType)
-                ? emailTemplateTypeFromJSON(object.EmailTemplateType)
-                : undefined,
+            EmailTemplateType: isSet(object.EmailTemplateType) ? emailTemplateTypeFromJSON(object.EmailTemplateType) : 0,
             OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : undefined,
             Network: isSet(object.Network) ? networkFromJSON(object.Network) : undefined,
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.EmailTemplateType !== undefined) {
+        if (message.EmailTemplateType !== 0) {
             obj.EmailTemplateType = emailTemplateTypeToJSON(message.EmailTemplateType);
         }
         if (message.OrganizationID !== undefined) {
@@ -87,7 +85,7 @@ export const EmailTemplateID = {
     fromPartial(object) {
         var _a, _b, _c;
         const message = createBaseEmailTemplateID();
-        message.EmailTemplateType = (_a = object.EmailTemplateType) !== null && _a !== void 0 ? _a : undefined;
+        message.EmailTemplateType = (_a = object.EmailTemplateType) !== null && _a !== void 0 ? _a : 0;
         message.OrganizationID = (_b = object.OrganizationID) !== null && _b !== void 0 ? _b : undefined;
         message.Network = (_c = object.Network) !== null && _c !== void 0 ? _c : undefined;
         return message;
@@ -202,7 +200,11 @@ export const EmailTemplateServiceService = {
         responseSerialize: (value) => Buffer.from(Empty.encode(value).finish()),
         responseDeserialize: (value) => Empty.decode(value),
     },
-    /** Delete a template to reset an org's template to the default */
+    /**
+     * Use cases:
+     * 1. Delete a default template (Sologenic Admin only)
+     * 2. Delete an organization specific template to revert to default (Organization Admin only)
+     */
     delete: {
         path: "/emailtemplate.EmailTemplateService/Delete",
         requestStream: false,

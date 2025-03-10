@@ -7,7 +7,7 @@ import { Empty } from "./google/protobuf/empty";
 import { Network } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export declare const protobufPackage = "emailtemplate";
 export interface EmailTemplateID {
-    EmailTemplateType?: EmailTemplateType | undefined;
+    EmailTemplateType: EmailTemplateType;
     OrganizationID?: string | undefined;
     Network?: Network | undefined;
 }
@@ -93,7 +93,11 @@ export declare const EmailTemplateServiceService: {
         readonly responseSerialize: (value: Empty) => Buffer;
         readonly responseDeserialize: (value: Buffer) => Empty;
     };
-    /** Delete a template to reset an org's template to the default */
+    /**
+     * Use cases:
+     * 1. Delete a default template (Sologenic Admin only)
+     * 2. Delete an organization specific template to revert to default (Organization Admin only)
+     */
     readonly delete: {
         readonly path: "/emailtemplate.EmailTemplateService/Delete";
         readonly requestStream: false;
@@ -108,7 +112,11 @@ export interface EmailTemplateServiceServer extends UntypedServiceImplementation
     get: handleUnaryCall<EmailTemplateID, EmailTemplate>;
     list: handleUnaryCall<Filter, EmailTemplates>;
     upsert: handleUnaryCall<EmailTemplate, Empty>;
-    /** Delete a template to reset an org's template to the default */
+    /**
+     * Use cases:
+     * 1. Delete a default template (Sologenic Admin only)
+     * 2. Delete an organization specific template to revert to default (Organization Admin only)
+     */
     delete: handleUnaryCall<EmailTemplate, Empty>;
 }
 export interface EmailTemplateServiceClient extends Client {
@@ -121,7 +129,11 @@ export interface EmailTemplateServiceClient extends Client {
     upsert(request: EmailTemplate, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;
     upsert(request: EmailTemplate, metadata: Metadata, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;
     upsert(request: EmailTemplate, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;
-    /** Delete a template to reset an org's template to the default */
+    /**
+     * Use cases:
+     * 1. Delete a default template (Sologenic Admin only)
+     * 2. Delete an organization specific template to revert to default (Organization Admin only)
+     */
     delete(request: EmailTemplate, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;
     delete(request: EmailTemplate, metadata: Metadata, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;
     delete(request: EmailTemplate, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;

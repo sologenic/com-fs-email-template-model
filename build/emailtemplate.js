@@ -5,8 +5,9 @@
 // source: emailtemplate.proto
 /* eslint-disable */
 import _m0 from "protobufjs/minimal";
+import { Timestamp } from "./google/protobuf/timestamp";
 import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
-import { MetaData } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
+import { networkFromJSON, networkToJSON } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export const protobufPackage = "emailtemplate";
 export var EmailTemplateType;
 (function (EmailTemplateType) {
@@ -78,15 +79,12 @@ export function emailTemplateTypeToJSON(object) {
     }
 }
 function createBaseEmailTemplate() {
-    return { EmailTemplate: undefined, MetaData: undefined, Audit: undefined };
+    return { EmailTemplate: undefined, Audit: undefined };
 }
 export const EmailTemplate = {
     encode(message, writer = _m0.Writer.create()) {
         if (message.EmailTemplate !== undefined) {
             EmailTemplateDetails.encode(message.EmailTemplate, writer.uint32(10).fork()).ldelim();
-        }
-        if (message.MetaData !== undefined) {
-            MetaData.encode(message.MetaData, writer.uint32(18).fork()).ldelim();
         }
         if (message.Audit !== undefined) {
             Audit.encode(message.Audit, writer.uint32(26).fork()).ldelim();
@@ -106,12 +104,6 @@ export const EmailTemplate = {
                     }
                     message.EmailTemplate = EmailTemplateDetails.decode(reader, reader.uint32());
                     continue;
-                case 2:
-                    if (tag !== 18) {
-                        break;
-                    }
-                    message.MetaData = MetaData.decode(reader, reader.uint32());
-                    continue;
                 case 3:
                     if (tag !== 26) {
                         break;
@@ -129,7 +121,6 @@ export const EmailTemplate = {
     fromJSON(object) {
         return {
             EmailTemplate: isSet(object.EmailTemplate) ? EmailTemplateDetails.fromJSON(object.EmailTemplate) : undefined,
-            MetaData: isSet(object.MetaData) ? MetaData.fromJSON(object.MetaData) : undefined,
             Audit: isSet(object.Audit) ? Audit.fromJSON(object.Audit) : undefined,
         };
     },
@@ -137,9 +128,6 @@ export const EmailTemplate = {
         const obj = {};
         if (message.EmailTemplate !== undefined) {
             obj.EmailTemplate = EmailTemplateDetails.toJSON(message.EmailTemplate);
-        }
-        if (message.MetaData !== undefined) {
-            obj.MetaData = MetaData.toJSON(message.MetaData);
         }
         if (message.Audit !== undefined) {
             obj.Audit = Audit.toJSON(message.Audit);
@@ -154,15 +142,22 @@ export const EmailTemplate = {
         message.EmailTemplate = (object.EmailTemplate !== undefined && object.EmailTemplate !== null)
             ? EmailTemplateDetails.fromPartial(object.EmailTemplate)
             : undefined;
-        message.MetaData = (object.MetaData !== undefined && object.MetaData !== null)
-            ? MetaData.fromPartial(object.MetaData)
-            : undefined;
         message.Audit = (object.Audit !== undefined && object.Audit !== null) ? Audit.fromPartial(object.Audit) : undefined;
         return message;
     },
 };
 function createBaseEmailTemplateDetails() {
-    return { Type: 0, OrganizationID: undefined, Name: "", Subject: "", HTML: "", Description: "" };
+    return {
+        Type: 0,
+        OrganizationID: undefined,
+        Name: "",
+        Subject: "",
+        HTML: "",
+        Description: "",
+        CreatedAt: undefined,
+        UpdatedAt: undefined,
+        Network: undefined,
+    };
 }
 export const EmailTemplateDetails = {
     encode(message, writer = _m0.Writer.create()) {
@@ -183,6 +178,15 @@ export const EmailTemplateDetails = {
         }
         if (message.Description !== "") {
             writer.uint32(50).string(message.Description);
+        }
+        if (message.CreatedAt !== undefined) {
+            Timestamp.encode(toTimestamp(message.CreatedAt), writer.uint32(58).fork()).ldelim();
+        }
+        if (message.UpdatedAt !== undefined) {
+            Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(66).fork()).ldelim();
+        }
+        if (message.Network !== undefined) {
+            writer.uint32(72).int32(message.Network);
         }
         return writer;
     },
@@ -229,6 +233,24 @@ export const EmailTemplateDetails = {
                     }
                     message.Description = reader.string();
                     continue;
+                case 7:
+                    if (tag !== 58) {
+                        break;
+                    }
+                    message.CreatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    continue;
+                case 8:
+                    if (tag !== 66) {
+                        break;
+                    }
+                    message.UpdatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    continue;
+                case 9:
+                    if (tag !== 72) {
+                        break;
+                    }
+                    message.Network = reader.int32();
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -245,6 +267,9 @@ export const EmailTemplateDetails = {
             Subject: isSet(object.Subject) ? globalThis.String(object.Subject) : "",
             HTML: isSet(object.HTML) ? globalThis.String(object.HTML) : "",
             Description: isSet(object.Description) ? globalThis.String(object.Description) : "",
+            CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
+            UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
+            Network: isSet(object.Network) ? networkFromJSON(object.Network) : undefined,
         };
     },
     toJSON(message) {
@@ -267,13 +292,22 @@ export const EmailTemplateDetails = {
         if (message.Description !== "") {
             obj.Description = message.Description;
         }
+        if (message.CreatedAt !== undefined) {
+            obj.CreatedAt = message.CreatedAt.toISOString();
+        }
+        if (message.UpdatedAt !== undefined) {
+            obj.UpdatedAt = message.UpdatedAt.toISOString();
+        }
+        if (message.Network !== undefined) {
+            obj.Network = networkToJSON(message.Network);
+        }
         return obj;
     },
     create(base) {
         return EmailTemplateDetails.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         const message = createBaseEmailTemplateDetails();
         message.Type = (_a = object.Type) !== null && _a !== void 0 ? _a : 0;
         message.OrganizationID = (_b = object.OrganizationID) !== null && _b !== void 0 ? _b : undefined;
@@ -281,6 +315,9 @@ export const EmailTemplateDetails = {
         message.Subject = (_d = object.Subject) !== null && _d !== void 0 ? _d : "";
         message.HTML = (_e = object.HTML) !== null && _e !== void 0 ? _e : "";
         message.Description = (_f = object.Description) !== null && _f !== void 0 ? _f : "";
+        message.CreatedAt = (_g = object.CreatedAt) !== null && _g !== void 0 ? _g : undefined;
+        message.UpdatedAt = (_h = object.UpdatedAt) !== null && _h !== void 0 ? _h : undefined;
+        message.Network = (_j = object.Network) !== null && _j !== void 0 ? _j : undefined;
         return message;
     },
 };
@@ -340,6 +377,27 @@ export const EmailTemplates = {
         return message;
     },
 };
+function toTimestamp(date) {
+    const seconds = Math.trunc(date.getTime() / 1000);
+    const nanos = (date.getTime() % 1000) * 1000000;
+    return { seconds, nanos };
+}
+function fromTimestamp(t) {
+    let millis = (t.seconds || 0) * 1000;
+    millis += (t.nanos || 0) / 1000000;
+    return new globalThis.Date(millis);
+}
+function fromJsonTimestamp(o) {
+    if (o instanceof globalThis.Date) {
+        return o;
+    }
+    else if (typeof o === "string") {
+        return new globalThis.Date(o);
+    }
+    else {
+        return fromTimestamp(Timestamp.fromJSON(o));
+    }
+}
 function isSet(value) {
     return value !== null && value !== undefined;
 }

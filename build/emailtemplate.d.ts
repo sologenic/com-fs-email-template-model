@@ -1,6 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
-import { MetaData } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
+import { Network } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export declare const protobufPackage = "emailtemplate";
 export declare enum EmailTemplateType {
     NOT_USED_EMAIL_TEMPLATE_TYPE = 0,
@@ -25,7 +25,6 @@ export declare function emailTemplateTypeToJSON(object: EmailTemplateType): stri
 /** Key: OrganizationID-Network-EmailTemplateType */
 export interface EmailTemplate {
     EmailTemplate: EmailTemplateDetails | undefined;
-    MetaData: MetaData | undefined;
     Audit: Audit | undefined;
 }
 export interface EmailTemplateDetails {
@@ -40,6 +39,10 @@ export interface EmailTemplateDetails {
     HTML: string;
     /** Description for internal use */
     Description: string;
+    /** Non-standard metadata: Network here is optional. In other cases it is almost always required */
+    CreatedAt: Date | undefined;
+    UpdatedAt: Date | undefined;
+    Network?: Network | undefined;
 }
 export interface EmailTemplates {
     EmailTemplates: EmailTemplate[];
@@ -57,12 +60,9 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
-        } | undefined;
-        MetaData?: {
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-            UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
-            UpdatedByAccount?: string | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
         } | undefined;
         Audit?: {
             ChangedBy?: string | undefined;
@@ -77,6 +77,9 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
         } & {
             Type?: EmailTemplateType | undefined;
             OrganizationID?: string | undefined;
@@ -84,18 +87,10 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
         } & { [K in Exclude<keyof I["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
-        MetaData?: ({
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-            UpdatedAt?: Date | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedByAccount?: string | undefined;
-        } & {
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-            UpdatedAt?: Date | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedByAccount?: string | undefined;
-        } & { [K_1 in Exclude<keyof I["MetaData"], keyof MetaData>]: never; }) | undefined;
         Audit?: ({
             ChangedBy?: string | undefined;
             ChangedAt?: Date | undefined;
@@ -104,8 +99,8 @@ export declare const EmailTemplate: {
             ChangedBy?: string | undefined;
             ChangedAt?: Date | undefined;
             Reason?: string | undefined;
-        } & { [K_2 in Exclude<keyof I["Audit"], keyof Audit>]: never; }) | undefined;
-    } & { [K_3 in Exclude<keyof I, keyof EmailTemplate>]: never; }>(base?: I | undefined): EmailTemplate;
+        } & { [K_1 in Exclude<keyof I["Audit"], keyof Audit>]: never; }) | undefined;
+    } & { [K_2 in Exclude<keyof I, keyof EmailTemplate>]: never; }>(base?: I | undefined): EmailTemplate;
     fromPartial<I_1 extends {
         EmailTemplate?: {
             Type?: EmailTemplateType | undefined;
@@ -114,12 +109,9 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
-        } | undefined;
-        MetaData?: {
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-            UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
-            UpdatedByAccount?: string | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
         } | undefined;
         Audit?: {
             ChangedBy?: string | undefined;
@@ -134,6 +126,9 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
+            CreatedAt?: Date | undefined;
+            UpdatedAt?: Date | undefined;
+            Network?: Network | undefined;
         } & {
             Type?: EmailTemplateType | undefined;
             OrganizationID?: string | undefined;
@@ -141,18 +136,10 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
-        } & { [K_4 in Exclude<keyof I_1["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
-        MetaData?: ({
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-            UpdatedAt?: Date | undefined;
             CreatedAt?: Date | undefined;
-            UpdatedByAccount?: string | undefined;
-        } & {
-            Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
             UpdatedAt?: Date | undefined;
-            CreatedAt?: Date | undefined;
-            UpdatedByAccount?: string | undefined;
-        } & { [K_5 in Exclude<keyof I_1["MetaData"], keyof MetaData>]: never; }) | undefined;
+            Network?: Network | undefined;
+        } & { [K_3 in Exclude<keyof I_1["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
         Audit?: ({
             ChangedBy?: string | undefined;
             ChangedAt?: Date | undefined;
@@ -161,8 +148,8 @@ export declare const EmailTemplate: {
             ChangedBy?: string | undefined;
             ChangedAt?: Date | undefined;
             Reason?: string | undefined;
-        } & { [K_6 in Exclude<keyof I_1["Audit"], keyof Audit>]: never; }) | undefined;
-    } & { [K_7 in Exclude<keyof I_1, keyof EmailTemplate>]: never; }>(object: I_1): EmailTemplate;
+        } & { [K_4 in Exclude<keyof I_1["Audit"], keyof Audit>]: never; }) | undefined;
+    } & { [K_5 in Exclude<keyof I_1, keyof EmailTemplate>]: never; }>(object: I_1): EmailTemplate;
 };
 export declare const EmailTemplateDetails: {
     encode(message: EmailTemplateDetails, writer?: _m0.Writer): _m0.Writer;
@@ -176,6 +163,9 @@ export declare const EmailTemplateDetails: {
         Subject?: string | undefined;
         HTML?: string | undefined;
         Description?: string | undefined;
+        CreatedAt?: Date | undefined;
+        UpdatedAt?: Date | undefined;
+        Network?: Network | undefined;
     } & {
         Type?: EmailTemplateType | undefined;
         OrganizationID?: string | undefined;
@@ -183,6 +173,9 @@ export declare const EmailTemplateDetails: {
         Subject?: string | undefined;
         HTML?: string | undefined;
         Description?: string | undefined;
+        CreatedAt?: Date | undefined;
+        UpdatedAt?: Date | undefined;
+        Network?: Network | undefined;
     } & { [K in Exclude<keyof I, keyof EmailTemplateDetails>]: never; }>(base?: I | undefined): EmailTemplateDetails;
     fromPartial<I_1 extends {
         Type?: EmailTemplateType | undefined;
@@ -191,6 +184,9 @@ export declare const EmailTemplateDetails: {
         Subject?: string | undefined;
         HTML?: string | undefined;
         Description?: string | undefined;
+        CreatedAt?: Date | undefined;
+        UpdatedAt?: Date | undefined;
+        Network?: Network | undefined;
     } & {
         Type?: EmailTemplateType | undefined;
         OrganizationID?: string | undefined;
@@ -198,6 +194,9 @@ export declare const EmailTemplateDetails: {
         Subject?: string | undefined;
         HTML?: string | undefined;
         Description?: string | undefined;
+        CreatedAt?: Date | undefined;
+        UpdatedAt?: Date | undefined;
+        Network?: Network | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof EmailTemplateDetails>]: never; }>(object: I_1): EmailTemplateDetails;
 };
 export declare const EmailTemplates: {
@@ -214,12 +213,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
-            } | undefined;
-            MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -236,12 +232,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
-            } | undefined;
-            MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -256,12 +249,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
-            } | undefined;
-            MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -276,6 +266,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } & {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -283,18 +276,10 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } & { [K in Exclude<keyof I["EmailTemplates"][number]["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
-            MetaData?: ({
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
-            } & {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
-            } & { [K_1 in Exclude<keyof I["EmailTemplates"][number]["MetaData"], keyof MetaData>]: never; }) | undefined;
             Audit?: ({
                 ChangedBy?: string | undefined;
                 ChangedAt?: Date | undefined;
@@ -303,8 +288,8 @@ export declare const EmailTemplates: {
                 ChangedBy?: string | undefined;
                 ChangedAt?: Date | undefined;
                 Reason?: string | undefined;
-            } & { [K_2 in Exclude<keyof I["EmailTemplates"][number]["Audit"], keyof Audit>]: never; }) | undefined;
-        } & { [K_3 in Exclude<keyof I["EmailTemplates"][number], keyof EmailTemplate>]: never; })[] & { [K_4 in Exclude<keyof I["EmailTemplates"], keyof {
+            } & { [K_1 in Exclude<keyof I["EmailTemplates"][number]["Audit"], keyof Audit>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I["EmailTemplates"][number], keyof EmailTemplate>]: never; })[] & { [K_3 in Exclude<keyof I["EmailTemplates"], keyof {
             EmailTemplate?: {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -312,12 +297,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
-            } | undefined;
-            MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -325,7 +307,7 @@ export declare const EmailTemplates: {
                 Reason?: string | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_5 in Exclude<keyof I, "EmailTemplates">]: never; }>(base?: I | undefined): EmailTemplates;
+    } & { [K_4 in Exclude<keyof I, "EmailTemplates">]: never; }>(base?: I | undefined): EmailTemplates;
     fromPartial<I_1 extends {
         EmailTemplates?: {
             EmailTemplate?: {
@@ -335,12 +317,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
-            } | undefined;
-            MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -357,12 +336,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
-            } | undefined;
-            MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -377,12 +353,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
-            } | undefined;
-            MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -397,6 +370,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                CreatedAt?: Date | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } & {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -404,18 +380,10 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
-            } & { [K_6 in Exclude<keyof I_1["EmailTemplates"][number]["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
-            MetaData?: ({
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
-            } & {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
                 UpdatedAt?: Date | undefined;
-                CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
-            } & { [K_7 in Exclude<keyof I_1["EmailTemplates"][number]["MetaData"], keyof MetaData>]: never; }) | undefined;
+                Network?: Network | undefined;
+            } & { [K_5 in Exclude<keyof I_1["EmailTemplates"][number]["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
             Audit?: ({
                 ChangedBy?: string | undefined;
                 ChangedAt?: Date | undefined;
@@ -424,8 +392,8 @@ export declare const EmailTemplates: {
                 ChangedBy?: string | undefined;
                 ChangedAt?: Date | undefined;
                 Reason?: string | undefined;
-            } & { [K_8 in Exclude<keyof I_1["EmailTemplates"][number]["Audit"], keyof Audit>]: never; }) | undefined;
-        } & { [K_9 in Exclude<keyof I_1["EmailTemplates"][number], keyof EmailTemplate>]: never; })[] & { [K_10 in Exclude<keyof I_1["EmailTemplates"], keyof {
+            } & { [K_6 in Exclude<keyof I_1["EmailTemplates"][number]["Audit"], keyof Audit>]: never; }) | undefined;
+        } & { [K_7 in Exclude<keyof I_1["EmailTemplates"][number], keyof EmailTemplate>]: never; })[] & { [K_8 in Exclude<keyof I_1["EmailTemplates"], keyof {
             EmailTemplate?: {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -433,12 +401,9 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
-            } | undefined;
-            MetaData?: {
-                Network?: import("./sologenic/com-fs-utils-lib/models/metadata/metadata").Network | undefined;
-                UpdatedAt?: Date | undefined;
                 CreatedAt?: Date | undefined;
-                UpdatedByAccount?: string | undefined;
+                UpdatedAt?: Date | undefined;
+                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -446,7 +411,7 @@ export declare const EmailTemplates: {
                 Reason?: string | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_11 in Exclude<keyof I_1, "EmailTemplates">]: never; }>(object: I_1): EmailTemplates;
+    } & { [K_9 in Exclude<keyof I_1, "EmailTemplates">]: never; }>(object: I_1): EmailTemplates;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

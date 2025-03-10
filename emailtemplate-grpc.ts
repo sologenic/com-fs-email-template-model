@@ -31,7 +31,7 @@ import { Network, networkFromJSON, networkToJSON } from "./sologenic/com-fs-util
 export const protobufPackage = "emailtemplate";
 
 export interface EmailTemplateID {
-  EmailTemplateType?: EmailTemplateType | undefined;
+  EmailTemplateType: EmailTemplateType;
   OrganizationID?: string | undefined;
   Network?: Network | undefined;
 }
@@ -43,12 +43,12 @@ export interface Filter {
 }
 
 function createBaseEmailTemplateID(): EmailTemplateID {
-  return { EmailTemplateType: undefined, OrganizationID: undefined, Network: undefined };
+  return { EmailTemplateType: 0, OrganizationID: undefined, Network: undefined };
 }
 
 export const EmailTemplateID = {
   encode(message: EmailTemplateID, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.EmailTemplateType !== undefined) {
+    if (message.EmailTemplateType !== 0) {
       writer.uint32(8).int32(message.EmailTemplateType);
     }
     if (message.OrganizationID !== undefined) {
@@ -99,9 +99,7 @@ export const EmailTemplateID = {
 
   fromJSON(object: any): EmailTemplateID {
     return {
-      EmailTemplateType: isSet(object.EmailTemplateType)
-        ? emailTemplateTypeFromJSON(object.EmailTemplateType)
-        : undefined,
+      EmailTemplateType: isSet(object.EmailTemplateType) ? emailTemplateTypeFromJSON(object.EmailTemplateType) : 0,
       OrganizationID: isSet(object.OrganizationID) ? globalThis.String(object.OrganizationID) : undefined,
       Network: isSet(object.Network) ? networkFromJSON(object.Network) : undefined,
     };
@@ -109,7 +107,7 @@ export const EmailTemplateID = {
 
   toJSON(message: EmailTemplateID): unknown {
     const obj: any = {};
-    if (message.EmailTemplateType !== undefined) {
+    if (message.EmailTemplateType !== 0) {
       obj.EmailTemplateType = emailTemplateTypeToJSON(message.EmailTemplateType);
     }
     if (message.OrganizationID !== undefined) {
@@ -126,7 +124,7 @@ export const EmailTemplateID = {
   },
   fromPartial<I extends Exact<DeepPartial<EmailTemplateID>, I>>(object: I): EmailTemplateID {
     const message = createBaseEmailTemplateID();
-    message.EmailTemplateType = object.EmailTemplateType ?? undefined;
+    message.EmailTemplateType = object.EmailTemplateType ?? 0;
     message.OrganizationID = object.OrganizationID ?? undefined;
     message.Network = object.Network ?? undefined;
     return message;
@@ -251,7 +249,11 @@ export const EmailTemplateServiceService = {
     responseSerialize: (value: Empty) => Buffer.from(Empty.encode(value).finish()),
     responseDeserialize: (value: Buffer) => Empty.decode(value),
   },
-  /** Delete a template to reset an org's template to the default */
+  /**
+   * Use cases:
+   * 1. Delete a default template (Sologenic Admin only)
+   * 2. Delete an organization specific template to revert to default (Organization Admin only)
+   */
   delete: {
     path: "/emailtemplate.EmailTemplateService/Delete",
     requestStream: false,
@@ -267,7 +269,11 @@ export interface EmailTemplateServiceServer extends UntypedServiceImplementation
   get: handleUnaryCall<EmailTemplateID, EmailTemplate>;
   list: handleUnaryCall<Filter, EmailTemplates>;
   upsert: handleUnaryCall<EmailTemplate, Empty>;
-  /** Delete a template to reset an org's template to the default */
+  /**
+   * Use cases:
+   * 1. Delete a default template (Sologenic Admin only)
+   * 2. Delete an organization specific template to revert to default (Organization Admin only)
+   */
   delete: handleUnaryCall<EmailTemplate, Empty>;
 }
 
@@ -311,7 +317,11 @@ export interface EmailTemplateServiceClient extends Client {
     options: Partial<CallOptions>,
     callback: (error: ServiceError | null, response: Empty) => void,
   ): ClientUnaryCall;
-  /** Delete a template to reset an org's template to the default */
+  /**
+   * Use cases:
+   * 1. Delete a default template (Sologenic Admin only)
+   * 2. Delete an organization specific template to revert to default (Organization Admin only)
+   */
   delete(request: EmailTemplate, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;
   delete(
     request: EmailTemplate,
