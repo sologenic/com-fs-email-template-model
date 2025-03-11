@@ -103,6 +103,8 @@ export interface EmailTemplateDetails {
   HTML: string;
   /** Description for internal use */
   Description: string;
+  /** fallback for HTML content */
+  PlainText: string;
   /** Non-standard metadata: Network here is optional. In other cases it is almost always required */
   CreatedAt: Date | undefined;
   UpdatedAt: Date | undefined;
@@ -197,6 +199,7 @@ function createBaseEmailTemplateDetails(): EmailTemplateDetails {
     Subject: "",
     HTML: "",
     Description: "",
+    PlainText: "",
     CreatedAt: undefined,
     UpdatedAt: undefined,
     Network: undefined,
@@ -223,14 +226,17 @@ export const EmailTemplateDetails = {
     if (message.Description !== "") {
       writer.uint32(50).string(message.Description);
     }
+    if (message.PlainText !== "") {
+      writer.uint32(58).string(message.PlainText);
+    }
     if (message.CreatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.CreatedAt), writer.uint32(58).fork()).ldelim();
+      Timestamp.encode(toTimestamp(message.CreatedAt), writer.uint32(66).fork()).ldelim();
     }
     if (message.UpdatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(66).fork()).ldelim();
+      Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(74).fork()).ldelim();
     }
     if (message.Network !== undefined) {
-      writer.uint32(72).int32(message.Network);
+      writer.uint32(80).int32(message.Network);
     }
     return writer;
   },
@@ -289,17 +295,24 @@ export const EmailTemplateDetails = {
             break;
           }
 
-          message.CreatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.PlainText = reader.string();
           continue;
         case 8:
           if (tag !== 66) {
             break;
           }
 
-          message.UpdatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.CreatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           continue;
         case 9:
-          if (tag !== 72) {
+          if (tag !== 74) {
+            break;
+          }
+
+          message.UpdatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          continue;
+        case 10:
+          if (tag !== 80) {
             break;
           }
 
@@ -322,6 +335,7 @@ export const EmailTemplateDetails = {
       Subject: isSet(object.Subject) ? globalThis.String(object.Subject) : "",
       HTML: isSet(object.HTML) ? globalThis.String(object.HTML) : "",
       Description: isSet(object.Description) ? globalThis.String(object.Description) : "",
+      PlainText: isSet(object.PlainText) ? globalThis.String(object.PlainText) : "",
       CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
       UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
       Network: isSet(object.Network) ? networkFromJSON(object.Network) : undefined,
@@ -348,6 +362,9 @@ export const EmailTemplateDetails = {
     if (message.Description !== "") {
       obj.Description = message.Description;
     }
+    if (message.PlainText !== "") {
+      obj.PlainText = message.PlainText;
+    }
     if (message.CreatedAt !== undefined) {
       obj.CreatedAt = message.CreatedAt.toISOString();
     }
@@ -371,6 +388,7 @@ export const EmailTemplateDetails = {
     message.Subject = object.Subject ?? "";
     message.HTML = object.HTML ?? "";
     message.Description = object.Description ?? "";
+    message.PlainText = object.PlainText ?? "";
     message.CreatedAt = object.CreatedAt ?? undefined;
     message.UpdatedAt = object.UpdatedAt ?? undefined;
     message.Network = object.Network ?? undefined;

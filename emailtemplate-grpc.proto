@@ -13,7 +13,9 @@ service EmailTemplateService {
     rpc List(Filter) returns (EmailTemplates) {}
     rpc Upsert(EmailTemplate) returns (google.protobuf.Empty) {}
     
-    // Delete a template to reset an org's template to the default
+    // Use cases:
+    // 1. Delete a default template (Sologenic Admin only)
+    // 2. Delete an organization specific template to revert to default (Organization Admin only)
     rpc Delete(EmailTemplate) returns (google.protobuf.Empty) {}   
 }
 

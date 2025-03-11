@@ -39,6 +39,8 @@ export interface EmailTemplateDetails {
     HTML: string;
     /** Description for internal use */
     Description: string;
+    /** fallback for HTML content */
+    PlainText: string;
     /** Non-standard metadata: Network here is optional. In other cases it is almost always required */
     CreatedAt: Date | undefined;
     UpdatedAt: Date | undefined;
@@ -60,6 +62,7 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
+            PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
@@ -77,6 +80,7 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
+            PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
@@ -87,6 +91,7 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
+            PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
@@ -109,6 +114,7 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
+            PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
@@ -126,6 +132,7 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
+            PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
@@ -136,6 +143,7 @@ export declare const EmailTemplate: {
             Subject?: string | undefined;
             HTML?: string | undefined;
             Description?: string | undefined;
+            PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
@@ -163,6 +171,7 @@ export declare const EmailTemplateDetails: {
         Subject?: string | undefined;
         HTML?: string | undefined;
         Description?: string | undefined;
+        PlainText?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
         Network?: Network | undefined;
@@ -173,6 +182,7 @@ export declare const EmailTemplateDetails: {
         Subject?: string | undefined;
         HTML?: string | undefined;
         Description?: string | undefined;
+        PlainText?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
         Network?: Network | undefined;
@@ -184,6 +194,7 @@ export declare const EmailTemplateDetails: {
         Subject?: string | undefined;
         HTML?: string | undefined;
         Description?: string | undefined;
+        PlainText?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
         Network?: Network | undefined;
@@ -194,6 +205,7 @@ export declare const EmailTemplateDetails: {
         Subject?: string | undefined;
         HTML?: string | undefined;
         Description?: string | undefined;
+        PlainText?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
         Network?: Network | undefined;
@@ -213,6 +225,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -232,6 +245,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -249,6 +263,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -266,6 +281,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -276,6 +292,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -297,6 +314,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -317,6 +335,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -336,6 +355,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -353,6 +373,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -370,6 +391,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -380,6 +402,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
@@ -401,6 +424,7 @@ export declare const EmailTemplates: {
                 Subject?: string | undefined;
                 HTML?: string | undefined;
                 Description?: string | undefined;
+                PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;

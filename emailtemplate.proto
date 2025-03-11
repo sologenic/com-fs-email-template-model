@@ -21,11 +21,12 @@ message EmailTemplateDetails {
     string Subject = 4; // Email Subject
     string HTML = 5; // HTML content
     string Description = 6; // Description for internal use
+    string PlainText = 7; // fallback for HTML content
     
     // Non-standard metadata: Network here is optional. In other cases it is almost always required
-    google.protobuf.Timestamp CreatedAt = 7;
-    google.protobuf.Timestamp UpdatedAt = 8;
-    optional metadata.Network Network = 9; 
+    google.protobuf.Timestamp CreatedAt = 8;
+    google.protobuf.Timestamp UpdatedAt = 9;
+    optional metadata.Network Network = 10; 
 }
 
 enum EmailTemplateType {

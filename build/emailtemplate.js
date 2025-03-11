@@ -154,6 +154,7 @@ function createBaseEmailTemplateDetails() {
         Subject: "",
         HTML: "",
         Description: "",
+        PlainText: "",
         CreatedAt: undefined,
         UpdatedAt: undefined,
         Network: undefined,
@@ -179,14 +180,17 @@ export const EmailTemplateDetails = {
         if (message.Description !== "") {
             writer.uint32(50).string(message.Description);
         }
+        if (message.PlainText !== "") {
+            writer.uint32(58).string(message.PlainText);
+        }
         if (message.CreatedAt !== undefined) {
-            Timestamp.encode(toTimestamp(message.CreatedAt), writer.uint32(58).fork()).ldelim();
+            Timestamp.encode(toTimestamp(message.CreatedAt), writer.uint32(66).fork()).ldelim();
         }
         if (message.UpdatedAt !== undefined) {
-            Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(66).fork()).ldelim();
+            Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(74).fork()).ldelim();
         }
         if (message.Network !== undefined) {
-            writer.uint32(72).int32(message.Network);
+            writer.uint32(80).int32(message.Network);
         }
         return writer;
     },
@@ -237,16 +241,22 @@ export const EmailTemplateDetails = {
                     if (tag !== 58) {
                         break;
                     }
-                    message.CreatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.PlainText = reader.string();
                     continue;
                 case 8:
                     if (tag !== 66) {
                         break;
                     }
-                    message.UpdatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    message.CreatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
                     continue;
                 case 9:
-                    if (tag !== 72) {
+                    if (tag !== 74) {
+                        break;
+                    }
+                    message.UpdatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+                    continue;
+                case 10:
+                    if (tag !== 80) {
                         break;
                     }
                     message.Network = reader.int32();
@@ -267,6 +277,7 @@ export const EmailTemplateDetails = {
             Subject: isSet(object.Subject) ? globalThis.String(object.Subject) : "",
             HTML: isSet(object.HTML) ? globalThis.String(object.HTML) : "",
             Description: isSet(object.Description) ? globalThis.String(object.Description) : "",
+            PlainText: isSet(object.PlainText) ? globalThis.String(object.PlainText) : "",
             CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
             UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
             Network: isSet(object.Network) ? networkFromJSON(object.Network) : undefined,
@@ -292,6 +303,9 @@ export const EmailTemplateDetails = {
         if (message.Description !== "") {
             obj.Description = message.Description;
         }
+        if (message.PlainText !== "") {
+            obj.PlainText = message.PlainText;
+        }
         if (message.CreatedAt !== undefined) {
             obj.CreatedAt = message.CreatedAt.toISOString();
         }
@@ -307,7 +321,7 @@ export const EmailTemplateDetails = {
         return EmailTemplateDetails.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         const message = createBaseEmailTemplateDetails();
         message.Type = (_a = object.Type) !== null && _a !== void 0 ? _a : 0;
         message.OrganizationID = (_b = object.OrganizationID) !== null && _b !== void 0 ? _b : undefined;
@@ -315,9 +329,10 @@ export const EmailTemplateDetails = {
         message.Subject = (_d = object.Subject) !== null && _d !== void 0 ? _d : "";
         message.HTML = (_e = object.HTML) !== null && _e !== void 0 ? _e : "";
         message.Description = (_f = object.Description) !== null && _f !== void 0 ? _f : "";
-        message.CreatedAt = (_g = object.CreatedAt) !== null && _g !== void 0 ? _g : undefined;
-        message.UpdatedAt = (_h = object.UpdatedAt) !== null && _h !== void 0 ? _h : undefined;
-        message.Network = (_j = object.Network) !== null && _j !== void 0 ? _j : undefined;
+        message.PlainText = (_g = object.PlainText) !== null && _g !== void 0 ? _g : "";
+        message.CreatedAt = (_h = object.CreatedAt) !== null && _h !== void 0 ? _h : undefined;
+        message.UpdatedAt = (_j = object.UpdatedAt) !== null && _j !== void 0 ? _j : undefined;
+        message.Network = (_k = object.Network) !== null && _k !== void 0 ? _k : undefined;
         return message;
     },
 };
