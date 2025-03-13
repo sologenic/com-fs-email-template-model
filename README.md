@@ -27,3 +27,73 @@ Generating these files can be done by running a build script with following comm
 ```sh
 ./bin/build.sh
 ```
+
+## Template Variables
+
+Email templates support variable substitution using the Go template syntax. The available variables depend on the template type:
+TemplateData are defined `/domain/emailtemplate.go` and are passed to the template when rendering.
+
+### KYC Email Templates (Types 1-5)
+
+These templates receive a `KYCEmailData` structure with the following variables:
+
+| Variable | Description |
+|----------|-------------|
+| `{{.UserName}}` | The user's display name |
+| `{{.RejectionReason}}` | Reason for KYC rejection (for rejection templates) |
+| `{{.ExternalUserID}}` | External user identifier |
+| `{{.AccountID}}` | Internal account ID |
+| `{{.ClientComment}}` | Comment provided by the client |
+| `{{.AdminComment}}` | Comment provided by the administrator |
+
+### Organization Templates (Type 100+)
+
+These templates receive an `OrganizationEmailData` structure with:
+
+| Variable | Description |
+|----------|-------------|
+| `{{.AdminName}}` | Organization administrator's name |
+| `{{.AdminEmail}}` | Organization administrator's email |
+
+
+## Creating New Email Template Types: End-to-End Flow
+
+This section describes how to add a new email template type to the system.
+
+> **Note**: Only Sologenic admin can add new email template types.
+
+1. Define the Template Type in Proto Definition
+
+First, add a new enum value to `EmailTemplateType` in `com-fs-email-template-model/emailtemplate.proto`:
+
+```protobuf
+enum EmailTemplateType {
+    // Existing types...
+    
+    // Add your new template type
+    NEW_NOTIFICATION_TYPE = 101;
+}
+```
+
+2. Define Template Data Structure
+Add or update the appropriate data structure in com-fs-email-template-model/domain/email.go:
+
+```go
+// For existing data structures, add new fields as needed
+type ExistingEmailData struct {
+    ExistingField string
+    NewField      string  // Add new fields to existing structures
+}
+
+// Or create a new data structure for your template type
+type NewTemplateData struct {
+    RecipientName string
+    CustomField   string
+}
+```
+
+3. Create System Template
+Sign in to the Admin dashboard as Sologenic Admin account and create a new system template with the new template type.
+
+4. Implement Notification Handler
+Add a handler in the notification service (`com-be-notification-email-listener`) to use your template.
