@@ -29,7 +29,7 @@ export interface EmailTemplate {
 }
 export interface EmailTemplateDetails {
     Type: EmailTemplateType;
-    /** If not set, this is a default template */
+    /** If not set, this is a System template */
     OrganizationID?: string | undefined;
     /** Display Name */
     Name: string;

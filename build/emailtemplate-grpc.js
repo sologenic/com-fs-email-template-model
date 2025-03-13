@@ -202,8 +202,8 @@ export const EmailTemplateServiceService = {
     },
     /**
      * Use cases:
-     * 1. Delete a default template (Sologenic Admin only)
-     * 2. Delete an organization specific template to revert to default (Organization Admin only)
+     * 1. Delete a system template (Sologenic Admin only)
+     * 2. Delete an organization specific template to revert to default system template (Organization Admin only)
      */
     delete: {
         path: "/emailtemplate.EmailTemplateService/Delete",

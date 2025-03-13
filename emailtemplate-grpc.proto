@@ -14,8 +14,8 @@ service EmailTemplateService {
     rpc Upsert(EmailTemplate) returns (google.protobuf.Empty) {}
     
     // Use cases:
-    // 1. Delete a default template (Sologenic Admin only)
-    // 2. Delete an organization specific template to revert to default (Organization Admin only)
+    // 1. Delete a system template (Sologenic Admin only)
+    // 2. Delete an organization specific template to revert to default system template (Organization Admin only)
     rpc Delete(EmailTemplate) returns (google.protobuf.Empty) {}   
 }
 

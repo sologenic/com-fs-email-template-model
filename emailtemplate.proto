@@ -16,7 +16,7 @@ message EmailTemplate {
 
 message EmailTemplateDetails {
     EmailTemplateType Type = 1;
-    optional string OrganizationID = 2; // If not set, this is a default template
+    optional string OrganizationID = 2; // If not set, this is a System template
     string Name = 3; // Display Name
     string Subject = 4; // Email Subject
     string HTML = 5; // HTML content

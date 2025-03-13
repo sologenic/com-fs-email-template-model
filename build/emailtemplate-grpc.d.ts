@@ -95,8 +95,8 @@ export declare const EmailTemplateServiceService: {
     };
     /**
      * Use cases:
-     * 1. Delete a default template (Sologenic Admin only)
-     * 2. Delete an organization specific template to revert to default (Organization Admin only)
+     * 1. Delete a system template (Sologenic Admin only)
+     * 2. Delete an organization specific template to revert to default system template (Organization Admin only)
      */
     readonly delete: {
         readonly path: "/emailtemplate.EmailTemplateService/Delete";
@@ -114,8 +114,8 @@ export interface EmailTemplateServiceServer extends UntypedServiceImplementation
     upsert: handleUnaryCall<EmailTemplate, Empty>;
     /**
      * Use cases:
-     * 1. Delete a default template (Sologenic Admin only)
-     * 2. Delete an organization specific template to revert to default (Organization Admin only)
+     * 1. Delete a system template (Sologenic Admin only)
+     * 2. Delete an organization specific template to revert to default system template (Organization Admin only)
      */
     delete: handleUnaryCall<EmailTemplate, Empty>;
 }
@@ -131,8 +131,8 @@ export interface EmailTemplateServiceClient extends Client {
     upsert(request: EmailTemplate, metadata: Metadata, options: Partial<CallOptions>, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;
     /**
      * Use cases:
-     * 1. Delete a default template (Sologenic Admin only)
-     * 2. Delete an organization specific template to revert to default (Organization Admin only)
+     * 1. Delete a system template (Sologenic Admin only)
+     * 2. Delete an organization specific template to revert to default system template (Organization Admin only)
      */
     delete(request: EmailTemplate, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;
     delete(request: EmailTemplate, metadata: Metadata, callback: (error: ServiceError | null, response: Empty) => void): ClientUnaryCall;

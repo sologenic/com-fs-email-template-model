@@ -150,7 +150,7 @@ type EmailTemplateDetails struct {
 	unknownFields protoimpl.UnknownFields
 
 	Type           EmailTemplateType `protobuf:"varint,1,opt,name=Type,proto3,enum=emailtemplate.EmailTemplateType" json:"Type,omitempty"`
-	OrganizationID *string           `protobuf:"bytes,2,opt,name=OrganizationID,proto3,oneof" json:"OrganizationID,omitempty"` // If not set, this is a default template
+	OrganizationID *string           `protobuf:"bytes,2,opt,name=OrganizationID,proto3,oneof" json:"OrganizationID,omitempty"` // If not set, this is a System template
 	Name           string            `protobuf:"bytes,3,opt,name=Name,proto3" json:"Name,omitempty"`                           // Display Name
 	Subject        string            `protobuf:"bytes,4,opt,name=Subject,proto3" json:"Subject,omitempty"`                     // Email Subject
 	HTML           string            `protobuf:"bytes,5,opt,name=HTML,proto3" json:"HTML,omitempty"`                           // HTML content

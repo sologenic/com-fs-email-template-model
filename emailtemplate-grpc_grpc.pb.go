@@ -23,8 +23,8 @@ type EmailTemplateServiceClient interface {
 	List(ctx context.Context, in *Filter, opts ...grpc.CallOption) (*EmailTemplates, error)
 	Upsert(ctx context.Context, in *EmailTemplate, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Use cases:
-	// 1. Delete a default template (Sologenic Admin only)
-	// 2. Delete an organization specific template to revert to default (Organization Admin only)
+	// 1. Delete a system template (Sologenic Admin only)
+	// 2. Delete an organization specific template to revert to default system template (Organization Admin only)
 	Delete(ctx context.Context, in *EmailTemplate, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -80,8 +80,8 @@ type EmailTemplateServiceServer interface {
 	List(context.Context, *Filter) (*EmailTemplates, error)
 	Upsert(context.Context, *EmailTemplate) (*emptypb.Empty, error)
 	// Use cases:
-	// 1. Delete a default template (Sologenic Admin only)
-	// 2. Delete an organization specific template to revert to default (Organization Admin only)
+	// 1. Delete a system template (Sologenic Admin only)
+	// 2. Delete an organization specific template to revert to default system template (Organization Admin only)
 	Delete(context.Context, *EmailTemplate) (*emptypb.Empty, error)
 }
 
