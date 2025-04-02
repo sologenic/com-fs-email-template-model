@@ -23,7 +23,7 @@ export enum EmailTemplateType {
   KYC_NOT_PROCESSABLE_FOREVER = 3,
   KYC_FIX_REQUEST = 4,
   KYC_ADMIN_DENIED = 5,
-  SUPPORT_TICKET_RECEIVED = 6,
+  SUPPORT_TICKET_SUBMITTED = 6,
   /**
    * ORGANIZATION_ONBOARDING - Organization Templates (configurable by Sologenic Admin)
    * Target: Organization Admin
@@ -53,8 +53,8 @@ export function emailTemplateTypeFromJSON(object: any): EmailTemplateType {
     case "KYC_ADMIN_DENIED":
       return EmailTemplateType.KYC_ADMIN_DENIED;
     case 6:
-    case "SUPPORT_TICKET_RECEIVED":
-      return EmailTemplateType.SUPPORT_TICKET_RECEIVED;
+    case "SUPPORT_TICKET_SUBMITTED":
+      return EmailTemplateType.SUPPORT_TICKET_SUBMITTED;
     case 100:
     case "ORGANIZATION_ONBOARDING":
       return EmailTemplateType.ORGANIZATION_ONBOARDING;
@@ -79,8 +79,8 @@ export function emailTemplateTypeToJSON(object: EmailTemplateType): string {
       return "KYC_FIX_REQUEST";
     case EmailTemplateType.KYC_ADMIN_DENIED:
       return "KYC_ADMIN_DENIED";
-    case EmailTemplateType.SUPPORT_TICKET_RECEIVED:
-      return "SUPPORT_TICKET_RECEIVED";
+    case EmailTemplateType.SUPPORT_TICKET_SUBMITTED:
+      return "SUPPORT_TICKET_SUBMITTED";
     case EmailTemplateType.ORGANIZATION_ONBOARDING:
       return "ORGANIZATION_ONBOARDING";
     case EmailTemplateType.UNRECOGNIZED:

@@ -13,7 +13,7 @@ export declare enum EmailTemplateType {
     KYC_NOT_PROCESSABLE_FOREVER = 3,
     KYC_FIX_REQUEST = 4,
     KYC_ADMIN_DENIED = 5,
-    SUPPORT_TICKET_RECEIVED = 6,
+    SUPPORT_TICKET_SUBMITTED = 6,
     /**
      * ORGANIZATION_ONBOARDING - Organization Templates (configurable by Sologenic Admin)
      * Target: Organization Admin

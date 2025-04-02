@@ -16,3 +16,11 @@ type OrganizationEmailData struct {
 	AdminName  string
 	AdminEmail string
 }
+
+type SupportTicketSubmissionData struct {
+	UserName              string
+	TicketID              string
+	SubmissionTime        string
+	ExpectedResponseHours int
+	SupportEmail          string
+}
