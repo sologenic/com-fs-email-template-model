@@ -38,6 +38,7 @@ enum EmailTemplateType {
     KYC_NOT_PROCESSABLE_FOREVER = 3;
     KYC_FIX_REQUEST = 4;
     KYC_ADMIN_DENIED = 5;
+    SUPPORT_TICKET_RECEIVED = 6;
 
     // Organization Templates (configurable by Sologenic Admin)
     // Target: Organization Admin
