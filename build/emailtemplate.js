@@ -164,6 +164,7 @@ function createBaseEmailTemplateDetails() {
         CreatedAt: undefined,
         UpdatedAt: undefined,
         Network: undefined,
+        TextElements: [],
     };
 }
 export const EmailTemplateDetails = {
@@ -197,6 +198,9 @@ export const EmailTemplateDetails = {
         }
         if (message.Network !== undefined) {
             writer.uint32(80).int32(message.Network);
+        }
+        for (const v of message.TextElements) {
+            TextElement.encode(v, writer.uint32(90).fork()).ldelim();
         }
         return writer;
     },
@@ -267,6 +271,12 @@ export const EmailTemplateDetails = {
                     }
                     message.Network = reader.int32();
                     continue;
+                case 11:
+                    if (tag !== 90) {
+                        break;
+                    }
+                    message.TextElements.push(TextElement.decode(reader, reader.uint32()));
+                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -287,9 +297,13 @@ export const EmailTemplateDetails = {
             CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
             UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
             Network: isSet(object.Network) ? networkFromJSON(object.Network) : undefined,
+            TextElements: globalThis.Array.isArray(object === null || object === void 0 ? void 0 : object.TextElements)
+                ? object.TextElements.map((e) => TextElement.fromJSON(e))
+                : [],
         };
     },
     toJSON(message) {
+        var _a;
         const obj = {};
         if (message.Type !== 0) {
             obj.Type = emailTemplateTypeToJSON(message.Type);
@@ -321,13 +335,16 @@ export const EmailTemplateDetails = {
         if (message.Network !== undefined) {
             obj.Network = networkToJSON(message.Network);
         }
+        if ((_a = message.TextElements) === null || _a === void 0 ? void 0 : _a.length) {
+            obj.TextElements = message.TextElements.map((e) => TextElement.toJSON(e));
+        }
         return obj;
     },
     create(base) {
         return EmailTemplateDetails.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
         const message = createBaseEmailTemplateDetails();
         message.Type = (_a = object.Type) !== null && _a !== void 0 ? _a : 0;
         message.OrganizationID = (_b = object.OrganizationID) !== null && _b !== void 0 ? _b : undefined;
@@ -339,6 +356,7 @@ export const EmailTemplateDetails = {
         message.CreatedAt = (_h = object.CreatedAt) !== null && _h !== void 0 ? _h : undefined;
         message.UpdatedAt = (_j = object.UpdatedAt) !== null && _j !== void 0 ? _j : undefined;
         message.Network = (_k = object.Network) !== null && _k !== void 0 ? _k : undefined;
+        message.TextElements = ((_l = object.TextElements) === null || _l === void 0 ? void 0 : _l.map((e) => TextElement.fromPartial(e))) || [];
         return message;
     },
 };
@@ -395,6 +413,73 @@ export const EmailTemplates = {
         var _a;
         const message = createBaseEmailTemplates();
         message.EmailTemplates = ((_a = object.EmailTemplates) === null || _a === void 0 ? void 0 : _a.map((e) => EmailTemplate.fromPartial(e))) || [];
+        return message;
+    },
+};
+function createBaseTextElement() {
+    return { Key: "", Content: "" };
+}
+export const TextElement = {
+    encode(message, writer = _m0.Writer.create()) {
+        if (message.Key !== "") {
+            writer.uint32(10).string(message.Key);
+        }
+        if (message.Content !== "") {
+            writer.uint32(18).string(message.Content);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseTextElement();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.Key = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.Content = reader.string();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            Key: isSet(object.Key) ? globalThis.String(object.Key) : "",
+            Content: isSet(object.Content) ? globalThis.String(object.Content) : "",
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.Key !== "") {
+            obj.Key = message.Key;
+        }
+        if (message.Content !== "") {
+            obj.Content = message.Content;
+        }
+        return obj;
+    },
+    create(base) {
+        return TextElement.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b;
+        const message = createBaseTextElement();
+        message.Key = (_a = object.Key) !== null && _a !== void 0 ? _a : "";
+        message.Content = (_b = object.Content) !== null && _b !== void 0 ? _b : "";
         return message;
     },
 };

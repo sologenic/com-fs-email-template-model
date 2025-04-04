@@ -27,6 +27,8 @@ message EmailTemplateDetails {
     google.protobuf.Timestamp CreatedAt = 8;
     google.protobuf.Timestamp UpdatedAt = 9;
     optional metadata.Network Network = 10; 
+
+    repeated TextElement TextElements = 11;
 }
 
 enum EmailTemplateType {
@@ -48,3 +50,9 @@ enum EmailTemplateType {
 message EmailTemplates {
     repeated EmailTemplate EmailTemplates = 1;
 }
+
+message TextElement {
+    string Key = 1; // Identifier for this content block (e.g., "header", "greeting")
+    string Content = 2; // The content text to be translated
+}
+

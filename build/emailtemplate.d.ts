@@ -46,9 +46,16 @@ export interface EmailTemplateDetails {
     CreatedAt: Date | undefined;
     UpdatedAt: Date | undefined;
     Network?: Network | undefined;
+    TextElements: TextElement[];
 }
 export interface EmailTemplates {
     EmailTemplates: EmailTemplate[];
+}
+export interface TextElement {
+    /** Identifier for this content block (e.g., "header", "greeting") */
+    Key: string;
+    /** The content text to be translated */
+    Content: string;
 }
 export declare const EmailTemplate: {
     encode(message: EmailTemplate, writer?: _m0.Writer): _m0.Writer;
@@ -67,6 +74,10 @@ export declare const EmailTemplate: {
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
+            TextElements?: {
+                Key?: string | undefined;
+                Content?: string | undefined;
+            }[] | undefined;
         } | undefined;
         Audit?: {
             ChangedBy?: string | undefined;
@@ -85,6 +96,10 @@ export declare const EmailTemplate: {
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
+            TextElements?: {
+                Key?: string | undefined;
+                Content?: string | undefined;
+            }[] | undefined;
         } & {
             Type?: EmailTemplateType | undefined;
             OrganizationID?: string | undefined;
@@ -96,7 +111,20 @@ export declare const EmailTemplate: {
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
-        } & { [K in Exclude<keyof I["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
+            TextElements?: ({
+                Key?: string | undefined;
+                Content?: string | undefined;
+            }[] & ({
+                Key?: string | undefined;
+                Content?: string | undefined;
+            } & {
+                Key?: string | undefined;
+                Content?: string | undefined;
+            } & { [K in Exclude<keyof I["EmailTemplate"]["TextElements"][number], keyof TextElement>]: never; })[] & { [K_1 in Exclude<keyof I["EmailTemplate"]["TextElements"], keyof {
+                Key?: string | undefined;
+                Content?: string | undefined;
+            }[]>]: never; }) | undefined;
+        } & { [K_2 in Exclude<keyof I["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
         Audit?: ({
             ChangedBy?: string | undefined;
             ChangedAt?: Date | undefined;
@@ -105,8 +133,8 @@ export declare const EmailTemplate: {
             ChangedBy?: string | undefined;
             ChangedAt?: Date | undefined;
             Reason?: string | undefined;
-        } & { [K_1 in Exclude<keyof I["Audit"], keyof Audit>]: never; }) | undefined;
-    } & { [K_2 in Exclude<keyof I, keyof EmailTemplate>]: never; }>(base?: I | undefined): EmailTemplate;
+        } & { [K_3 in Exclude<keyof I["Audit"], keyof Audit>]: never; }) | undefined;
+    } & { [K_4 in Exclude<keyof I, keyof EmailTemplate>]: never; }>(base?: I | undefined): EmailTemplate;
     fromPartial<I_1 extends {
         EmailTemplate?: {
             Type?: EmailTemplateType | undefined;
@@ -119,6 +147,10 @@ export declare const EmailTemplate: {
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
+            TextElements?: {
+                Key?: string | undefined;
+                Content?: string | undefined;
+            }[] | undefined;
         } | undefined;
         Audit?: {
             ChangedBy?: string | undefined;
@@ -137,6 +169,10 @@ export declare const EmailTemplate: {
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
+            TextElements?: {
+                Key?: string | undefined;
+                Content?: string | undefined;
+            }[] | undefined;
         } & {
             Type?: EmailTemplateType | undefined;
             OrganizationID?: string | undefined;
@@ -148,7 +184,20 @@ export declare const EmailTemplate: {
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
             Network?: Network | undefined;
-        } & { [K_3 in Exclude<keyof I_1["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
+            TextElements?: ({
+                Key?: string | undefined;
+                Content?: string | undefined;
+            }[] & ({
+                Key?: string | undefined;
+                Content?: string | undefined;
+            } & {
+                Key?: string | undefined;
+                Content?: string | undefined;
+            } & { [K_5 in Exclude<keyof I_1["EmailTemplate"]["TextElements"][number], keyof TextElement>]: never; })[] & { [K_6 in Exclude<keyof I_1["EmailTemplate"]["TextElements"], keyof {
+                Key?: string | undefined;
+                Content?: string | undefined;
+            }[]>]: never; }) | undefined;
+        } & { [K_7 in Exclude<keyof I_1["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
         Audit?: ({
             ChangedBy?: string | undefined;
             ChangedAt?: Date | undefined;
@@ -157,8 +206,8 @@ export declare const EmailTemplate: {
             ChangedBy?: string | undefined;
             ChangedAt?: Date | undefined;
             Reason?: string | undefined;
-        } & { [K_4 in Exclude<keyof I_1["Audit"], keyof Audit>]: never; }) | undefined;
-    } & { [K_5 in Exclude<keyof I_1, keyof EmailTemplate>]: never; }>(object: I_1): EmailTemplate;
+        } & { [K_8 in Exclude<keyof I_1["Audit"], keyof Audit>]: never; }) | undefined;
+    } & { [K_9 in Exclude<keyof I_1, keyof EmailTemplate>]: never; }>(object: I_1): EmailTemplate;
 };
 export declare const EmailTemplateDetails: {
     encode(message: EmailTemplateDetails, writer?: _m0.Writer): _m0.Writer;
@@ -176,6 +225,10 @@ export declare const EmailTemplateDetails: {
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
         Network?: Network | undefined;
+        TextElements?: {
+            Key?: string | undefined;
+            Content?: string | undefined;
+        }[] | undefined;
     } & {
         Type?: EmailTemplateType | undefined;
         OrganizationID?: string | undefined;
@@ -187,7 +240,20 @@ export declare const EmailTemplateDetails: {
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
         Network?: Network | undefined;
-    } & { [K in Exclude<keyof I, keyof EmailTemplateDetails>]: never; }>(base?: I | undefined): EmailTemplateDetails;
+        TextElements?: ({
+            Key?: string | undefined;
+            Content?: string | undefined;
+        }[] & ({
+            Key?: string | undefined;
+            Content?: string | undefined;
+        } & {
+            Key?: string | undefined;
+            Content?: string | undefined;
+        } & { [K in Exclude<keyof I["TextElements"][number], keyof TextElement>]: never; })[] & { [K_1 in Exclude<keyof I["TextElements"], keyof {
+            Key?: string | undefined;
+            Content?: string | undefined;
+        }[]>]: never; }) | undefined;
+    } & { [K_2 in Exclude<keyof I, keyof EmailTemplateDetails>]: never; }>(base?: I | undefined): EmailTemplateDetails;
     fromPartial<I_1 extends {
         Type?: EmailTemplateType | undefined;
         OrganizationID?: string | undefined;
@@ -199,6 +265,10 @@ export declare const EmailTemplateDetails: {
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
         Network?: Network | undefined;
+        TextElements?: {
+            Key?: string | undefined;
+            Content?: string | undefined;
+        }[] | undefined;
     } & {
         Type?: EmailTemplateType | undefined;
         OrganizationID?: string | undefined;
@@ -210,7 +280,20 @@ export declare const EmailTemplateDetails: {
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
         Network?: Network | undefined;
-    } & { [K_1 in Exclude<keyof I_1, keyof EmailTemplateDetails>]: never; }>(object: I_1): EmailTemplateDetails;
+        TextElements?: ({
+            Key?: string | undefined;
+            Content?: string | undefined;
+        }[] & ({
+            Key?: string | undefined;
+            Content?: string | undefined;
+        } & {
+            Key?: string | undefined;
+            Content?: string | undefined;
+        } & { [K_3 in Exclude<keyof I_1["TextElements"][number], keyof TextElement>]: never; })[] & { [K_4 in Exclude<keyof I_1["TextElements"], keyof {
+            Key?: string | undefined;
+            Content?: string | undefined;
+        }[]>]: never; }) | undefined;
+    } & { [K_5 in Exclude<keyof I_1, keyof EmailTemplateDetails>]: never; }>(object: I_1): EmailTemplateDetails;
 };
 export declare const EmailTemplates: {
     encode(message: EmailTemplates, writer?: _m0.Writer): _m0.Writer;
@@ -230,6 +313,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -250,6 +337,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -268,6 +359,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -286,6 +381,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } & {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -297,7 +396,20 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
-            } & { [K in Exclude<keyof I["EmailTemplates"][number]["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
+                TextElements?: ({
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] & ({
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                } & {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                } & { [K in Exclude<keyof I["EmailTemplates"][number]["EmailTemplate"]["TextElements"][number], keyof TextElement>]: never; })[] & { [K_1 in Exclude<keyof I["EmailTemplates"][number]["EmailTemplate"]["TextElements"], keyof {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[]>]: never; }) | undefined;
+            } & { [K_2 in Exclude<keyof I["EmailTemplates"][number]["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
             Audit?: ({
                 ChangedBy?: string | undefined;
                 ChangedAt?: Date | undefined;
@@ -306,8 +418,8 @@ export declare const EmailTemplates: {
                 ChangedBy?: string | undefined;
                 ChangedAt?: Date | undefined;
                 Reason?: string | undefined;
-            } & { [K_1 in Exclude<keyof I["EmailTemplates"][number]["Audit"], keyof Audit>]: never; }) | undefined;
-        } & { [K_2 in Exclude<keyof I["EmailTemplates"][number], keyof EmailTemplate>]: never; })[] & { [K_3 in Exclude<keyof I["EmailTemplates"], keyof {
+            } & { [K_3 in Exclude<keyof I["EmailTemplates"][number]["Audit"], keyof Audit>]: never; }) | undefined;
+        } & { [K_4 in Exclude<keyof I["EmailTemplates"][number], keyof EmailTemplate>]: never; })[] & { [K_5 in Exclude<keyof I["EmailTemplates"], keyof {
             EmailTemplate?: {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -319,6 +431,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -326,7 +442,7 @@ export declare const EmailTemplates: {
                 Reason?: string | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_4 in Exclude<keyof I, "EmailTemplates">]: never; }>(base?: I | undefined): EmailTemplates;
+    } & { [K_6 in Exclude<keyof I, "EmailTemplates">]: never; }>(base?: I | undefined): EmailTemplates;
     fromPartial<I_1 extends {
         EmailTemplates?: {
             EmailTemplate?: {
@@ -340,6 +456,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -360,6 +480,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -378,6 +502,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -396,6 +524,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } & {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -407,7 +539,20 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
-            } & { [K_5 in Exclude<keyof I_1["EmailTemplates"][number]["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
+                TextElements?: ({
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] & ({
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                } & {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                } & { [K_7 in Exclude<keyof I_1["EmailTemplates"][number]["EmailTemplate"]["TextElements"][number], keyof TextElement>]: never; })[] & { [K_8 in Exclude<keyof I_1["EmailTemplates"][number]["EmailTemplate"]["TextElements"], keyof {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[]>]: never; }) | undefined;
+            } & { [K_9 in Exclude<keyof I_1["EmailTemplates"][number]["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
             Audit?: ({
                 ChangedBy?: string | undefined;
                 ChangedAt?: Date | undefined;
@@ -416,8 +561,8 @@ export declare const EmailTemplates: {
                 ChangedBy?: string | undefined;
                 ChangedAt?: Date | undefined;
                 Reason?: string | undefined;
-            } & { [K_6 in Exclude<keyof I_1["EmailTemplates"][number]["Audit"], keyof Audit>]: never; }) | undefined;
-        } & { [K_7 in Exclude<keyof I_1["EmailTemplates"][number], keyof EmailTemplate>]: never; })[] & { [K_8 in Exclude<keyof I_1["EmailTemplates"], keyof {
+            } & { [K_10 in Exclude<keyof I_1["EmailTemplates"][number]["Audit"], keyof Audit>]: never; }) | undefined;
+        } & { [K_11 in Exclude<keyof I_1["EmailTemplates"][number], keyof EmailTemplate>]: never; })[] & { [K_12 in Exclude<keyof I_1["EmailTemplates"], keyof {
             EmailTemplate?: {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -429,6 +574,10 @@ export declare const EmailTemplates: {
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
                 Network?: Network | undefined;
+                TextElements?: {
+                    Key?: string | undefined;
+                    Content?: string | undefined;
+                }[] | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -436,7 +585,27 @@ export declare const EmailTemplates: {
                 Reason?: string | undefined;
             } | undefined;
         }[]>]: never; }) | undefined;
-    } & { [K_9 in Exclude<keyof I_1, "EmailTemplates">]: never; }>(object: I_1): EmailTemplates;
+    } & { [K_13 in Exclude<keyof I_1, "EmailTemplates">]: never; }>(object: I_1): EmailTemplates;
+};
+export declare const TextElement: {
+    encode(message: TextElement, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): TextElement;
+    fromJSON(object: any): TextElement;
+    toJSON(message: TextElement): unknown;
+    create<I extends {
+        Key?: string | undefined;
+        Content?: string | undefined;
+    } & {
+        Key?: string | undefined;
+        Content?: string | undefined;
+    } & { [K in Exclude<keyof I, keyof TextElement>]: never; }>(base?: I | undefined): TextElement;
+    fromPartial<I_1 extends {
+        Key?: string | undefined;
+        Content?: string | undefined;
+    } & {
+        Key?: string | undefined;
+        Content?: string | undefined;
+    } & { [K_1 in Exclude<keyof I_1, keyof TextElement>]: never; }>(object: I_1): TextElement;
 };
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 export type DeepPartial<T> = T extends Builtin ? T : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>> : T extends {} ? {

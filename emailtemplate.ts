@@ -115,10 +115,18 @@ export interface EmailTemplateDetails {
   CreatedAt: Date | undefined;
   UpdatedAt: Date | undefined;
   Network?: Network | undefined;
+  TextElements: TextElement[];
 }
 
 export interface EmailTemplates {
   EmailTemplates: EmailTemplate[];
+}
+
+export interface TextElement {
+  /** Identifier for this content block (e.g., "header", "greeting") */
+  Key: string;
+  /** The content text to be translated */
+  Content: string;
 }
 
 function createBaseEmailTemplate(): EmailTemplate {
@@ -209,6 +217,7 @@ function createBaseEmailTemplateDetails(): EmailTemplateDetails {
     CreatedAt: undefined,
     UpdatedAt: undefined,
     Network: undefined,
+    TextElements: [],
   };
 }
 
@@ -243,6 +252,9 @@ export const EmailTemplateDetails = {
     }
     if (message.Network !== undefined) {
       writer.uint32(80).int32(message.Network);
+    }
+    for (const v of message.TextElements) {
+      TextElement.encode(v!, writer.uint32(90).fork()).ldelim();
     }
     return writer;
   },
@@ -324,6 +336,13 @@ export const EmailTemplateDetails = {
 
           message.Network = reader.int32() as any;
           continue;
+        case 11:
+          if (tag !== 90) {
+            break;
+          }
+
+          message.TextElements.push(TextElement.decode(reader, reader.uint32()));
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -345,6 +364,9 @@ export const EmailTemplateDetails = {
       CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
       UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
       Network: isSet(object.Network) ? networkFromJSON(object.Network) : undefined,
+      TextElements: globalThis.Array.isArray(object?.TextElements)
+        ? object.TextElements.map((e: any) => TextElement.fromJSON(e))
+        : [],
     };
   },
 
@@ -380,6 +402,9 @@ export const EmailTemplateDetails = {
     if (message.Network !== undefined) {
       obj.Network = networkToJSON(message.Network);
     }
+    if (message.TextElements?.length) {
+      obj.TextElements = message.TextElements.map((e) => TextElement.toJSON(e));
+    }
     return obj;
   },
 
@@ -398,6 +423,7 @@ export const EmailTemplateDetails = {
     message.CreatedAt = object.CreatedAt ?? undefined;
     message.UpdatedAt = object.UpdatedAt ?? undefined;
     message.Network = object.Network ?? undefined;
+    message.TextElements = object.TextElements?.map((e) => TextElement.fromPartial(e)) || [];
     return message;
   },
 };
@@ -459,6 +485,80 @@ export const EmailTemplates = {
   fromPartial<I extends Exact<DeepPartial<EmailTemplates>, I>>(object: I): EmailTemplates {
     const message = createBaseEmailTemplates();
     message.EmailTemplates = object.EmailTemplates?.map((e) => EmailTemplate.fromPartial(e)) || [];
+    return message;
+  },
+};
+
+function createBaseTextElement(): TextElement {
+  return { Key: "", Content: "" };
+}
+
+export const TextElement = {
+  encode(message: TextElement, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.Key !== "") {
+      writer.uint32(10).string(message.Key);
+    }
+    if (message.Content !== "") {
+      writer.uint32(18).string(message.Content);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): TextElement {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseTextElement();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.Key = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.Content = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): TextElement {
+    return {
+      Key: isSet(object.Key) ? globalThis.String(object.Key) : "",
+      Content: isSet(object.Content) ? globalThis.String(object.Content) : "",
+    };
+  },
+
+  toJSON(message: TextElement): unknown {
+    const obj: any = {};
+    if (message.Key !== "") {
+      obj.Key = message.Key;
+    }
+    if (message.Content !== "") {
+      obj.Content = message.Content;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<TextElement>, I>>(base?: I): TextElement {
+    return TextElement.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<TextElement>, I>>(object: I): TextElement {
+    const message = createBaseTextElement();
+    message.Key = object.Key ?? "";
+    message.Content = object.Content ?? "";
     return message;
   },
 };
