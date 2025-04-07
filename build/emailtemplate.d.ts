@@ -33,8 +33,8 @@ export declare enum Section {
     BODY_MAIN = 4,
     /** BODY_DETAILS - Additional details or information if needed */
     BODY_DETAILS = 5,
-    FOOTER = 6,
-    SIGNATURE = 7,
+    SIGNATURE = 6,
+    FOOTER = 7,
     UNRECOGNIZED = -1
 }
 export declare function sectionFromJSON(object: any): Section;

@@ -95,8 +95,8 @@ export var Section;
     Section[Section["BODY_MAIN"] = 4] = "BODY_MAIN";
     /** BODY_DETAILS - Additional details or information if needed */
     Section[Section["BODY_DETAILS"] = 5] = "BODY_DETAILS";
-    Section[Section["FOOTER"] = 6] = "FOOTER";
-    Section[Section["SIGNATURE"] = 7] = "SIGNATURE";
+    Section[Section["SIGNATURE"] = 6] = "SIGNATURE";
+    Section[Section["FOOTER"] = 7] = "FOOTER";
     Section[Section["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
 })(Section || (Section = {}));
 export function sectionFromJSON(object) {
@@ -120,11 +120,11 @@ export function sectionFromJSON(object) {
         case "BODY_DETAILS":
             return Section.BODY_DETAILS;
         case 6:
-        case "FOOTER":
-            return Section.FOOTER;
-        case 7:
         case "SIGNATURE":
             return Section.SIGNATURE;
+        case 7:
+        case "FOOTER":
+            return Section.FOOTER;
         case -1:
         case "UNRECOGNIZED":
         default:
@@ -145,10 +145,10 @@ export function sectionToJSON(object) {
             return "BODY_MAIN";
         case Section.BODY_DETAILS:
             return "BODY_DETAILS";
-        case Section.FOOTER:
-            return "FOOTER";
         case Section.SIGNATURE:
             return "SIGNATURE";
+        case Section.FOOTER:
+            return "FOOTER";
         case Section.UNRECOGNIZED:
         default:
             return "UNRECOGNIZED";

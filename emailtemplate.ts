@@ -99,8 +99,8 @@ export enum Section {
   BODY_MAIN = 4,
   /** BODY_DETAILS - Additional details or information if needed */
   BODY_DETAILS = 5,
-  FOOTER = 6,
-  SIGNATURE = 7,
+  SIGNATURE = 6,
+  FOOTER = 7,
   UNRECOGNIZED = -1,
 }
 
@@ -125,11 +125,11 @@ export function sectionFromJSON(object: any): Section {
     case "BODY_DETAILS":
       return Section.BODY_DETAILS;
     case 6:
-    case "FOOTER":
-      return Section.FOOTER;
-    case 7:
     case "SIGNATURE":
       return Section.SIGNATURE;
+    case 7:
+    case "FOOTER":
+      return Section.FOOTER;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -151,10 +151,10 @@ export function sectionToJSON(object: Section): string {
       return "BODY_MAIN";
     case Section.BODY_DETAILS:
       return "BODY_DETAILS";
-    case Section.FOOTER:
-      return "FOOTER";
     case Section.SIGNATURE:
       return "SIGNATURE";
+    case Section.FOOTER:
+      return "FOOTER";
     case Section.UNRECOGNIZED:
     default:
       return "UNRECOGNIZED";
