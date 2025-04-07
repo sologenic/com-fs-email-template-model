@@ -89,6 +89,78 @@ export function emailTemplateTypeToJSON(object: EmailTemplateType): string {
   }
 }
 
+export enum Section {
+  NOT_USED_EMAIL_SECTION = 0,
+  SUBJECT = 1,
+  HEADER = 2,
+  /** BODY_INTRO - Greeting, introduction, etc. */
+  BODY_INTRO = 3,
+  /** BODY_MAIN - Main content of the email */
+  BODY_MAIN = 4,
+  /** BODY_DETAILS - Additional details or information if needed */
+  BODY_DETAILS = 5,
+  FOOTER = 6,
+  SIGNATURE = 7,
+  UNRECOGNIZED = -1,
+}
+
+export function sectionFromJSON(object: any): Section {
+  switch (object) {
+    case 0:
+    case "NOT_USED_EMAIL_SECTION":
+      return Section.NOT_USED_EMAIL_SECTION;
+    case 1:
+    case "SUBJECT":
+      return Section.SUBJECT;
+    case 2:
+    case "HEADER":
+      return Section.HEADER;
+    case 3:
+    case "BODY_INTRO":
+      return Section.BODY_INTRO;
+    case 4:
+    case "BODY_MAIN":
+      return Section.BODY_MAIN;
+    case 5:
+    case "BODY_DETAILS":
+      return Section.BODY_DETAILS;
+    case 6:
+    case "FOOTER":
+      return Section.FOOTER;
+    case 7:
+    case "SIGNATURE":
+      return Section.SIGNATURE;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return Section.UNRECOGNIZED;
+  }
+}
+
+export function sectionToJSON(object: Section): string {
+  switch (object) {
+    case Section.NOT_USED_EMAIL_SECTION:
+      return "NOT_USED_EMAIL_SECTION";
+    case Section.SUBJECT:
+      return "SUBJECT";
+    case Section.HEADER:
+      return "HEADER";
+    case Section.BODY_INTRO:
+      return "BODY_INTRO";
+    case Section.BODY_MAIN:
+      return "BODY_MAIN";
+    case Section.BODY_DETAILS:
+      return "BODY_DETAILS";
+    case Section.FOOTER:
+      return "FOOTER";
+    case Section.SIGNATURE:
+      return "SIGNATURE";
+    case Section.UNRECOGNIZED:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
+
 /** Key: OrganizationID-Network-EmailTemplateType */
 export interface EmailTemplate {
   EmailTemplate: EmailTemplateDetails | undefined;
@@ -123,9 +195,9 @@ export interface EmailTemplates {
 }
 
 export interface TextElement {
-  /** Identifier for this content block (e.g., "header", "greeting") */
-  Key: string;
-  /** The content text to be translated */
+  /** Block identifier */
+  Section: Section;
+  /** The content text */
   Content: string;
 }
 
@@ -490,13 +562,13 @@ export const EmailTemplates = {
 };
 
 function createBaseTextElement(): TextElement {
-  return { Key: "", Content: "" };
+  return { Section: 0, Content: "" };
 }
 
 export const TextElement = {
   encode(message: TextElement, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.Key !== "") {
-      writer.uint32(10).string(message.Key);
+    if (message.Section !== 0) {
+      writer.uint32(8).int32(message.Section);
     }
     if (message.Content !== "") {
       writer.uint32(18).string(message.Content);
@@ -512,11 +584,11 @@ export const TextElement = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          if (tag !== 10) {
+          if (tag !== 8) {
             break;
           }
 
-          message.Key = reader.string();
+          message.Section = reader.int32() as any;
           continue;
         case 2:
           if (tag !== 18) {
@@ -536,15 +608,15 @@ export const TextElement = {
 
   fromJSON(object: any): TextElement {
     return {
-      Key: isSet(object.Key) ? globalThis.String(object.Key) : "",
+      Section: isSet(object.Section) ? sectionFromJSON(object.Section) : 0,
       Content: isSet(object.Content) ? globalThis.String(object.Content) : "",
     };
   },
 
   toJSON(message: TextElement): unknown {
     const obj: any = {};
-    if (message.Key !== "") {
-      obj.Key = message.Key;
+    if (message.Section !== 0) {
+      obj.Section = sectionToJSON(message.Section);
     }
     if (message.Content !== "") {
       obj.Content = message.Content;
@@ -557,7 +629,7 @@ export const TextElement = {
   },
   fromPartial<I extends Exact<DeepPartial<TextElement>, I>>(object: I): TextElement {
     const message = createBaseTextElement();
-    message.Key = object.Key ?? "";
+    message.Section = object.Section ?? 0;
     message.Content = object.Content ?? "";
     return message;
   },

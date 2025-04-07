@@ -84,6 +84,76 @@ export function emailTemplateTypeToJSON(object) {
             return "UNRECOGNIZED";
     }
 }
+export var Section;
+(function (Section) {
+    Section[Section["NOT_USED_EMAIL_SECTION"] = 0] = "NOT_USED_EMAIL_SECTION";
+    Section[Section["SUBJECT"] = 1] = "SUBJECT";
+    Section[Section["HEADER"] = 2] = "HEADER";
+    /** BODY_INTRO - Greeting, introduction, etc. */
+    Section[Section["BODY_INTRO"] = 3] = "BODY_INTRO";
+    /** BODY_MAIN - Main content of the email */
+    Section[Section["BODY_MAIN"] = 4] = "BODY_MAIN";
+    /** BODY_DETAILS - Additional details or information if needed */
+    Section[Section["BODY_DETAILS"] = 5] = "BODY_DETAILS";
+    Section[Section["FOOTER"] = 6] = "FOOTER";
+    Section[Section["SIGNATURE"] = 7] = "SIGNATURE";
+    Section[Section["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
+})(Section || (Section = {}));
+export function sectionFromJSON(object) {
+    switch (object) {
+        case 0:
+        case "NOT_USED_EMAIL_SECTION":
+            return Section.NOT_USED_EMAIL_SECTION;
+        case 1:
+        case "SUBJECT":
+            return Section.SUBJECT;
+        case 2:
+        case "HEADER":
+            return Section.HEADER;
+        case 3:
+        case "BODY_INTRO":
+            return Section.BODY_INTRO;
+        case 4:
+        case "BODY_MAIN":
+            return Section.BODY_MAIN;
+        case 5:
+        case "BODY_DETAILS":
+            return Section.BODY_DETAILS;
+        case 6:
+        case "FOOTER":
+            return Section.FOOTER;
+        case 7:
+        case "SIGNATURE":
+            return Section.SIGNATURE;
+        case -1:
+        case "UNRECOGNIZED":
+        default:
+            return Section.UNRECOGNIZED;
+    }
+}
+export function sectionToJSON(object) {
+    switch (object) {
+        case Section.NOT_USED_EMAIL_SECTION:
+            return "NOT_USED_EMAIL_SECTION";
+        case Section.SUBJECT:
+            return "SUBJECT";
+        case Section.HEADER:
+            return "HEADER";
+        case Section.BODY_INTRO:
+            return "BODY_INTRO";
+        case Section.BODY_MAIN:
+            return "BODY_MAIN";
+        case Section.BODY_DETAILS:
+            return "BODY_DETAILS";
+        case Section.FOOTER:
+            return "FOOTER";
+        case Section.SIGNATURE:
+            return "SIGNATURE";
+        case Section.UNRECOGNIZED:
+        default:
+            return "UNRECOGNIZED";
+    }
+}
 function createBaseEmailTemplate() {
     return { EmailTemplate: undefined, Audit: undefined };
 }
@@ -417,12 +487,12 @@ export const EmailTemplates = {
     },
 };
 function createBaseTextElement() {
-    return { Key: "", Content: "" };
+    return { Section: 0, Content: "" };
 }
 export const TextElement = {
     encode(message, writer = _m0.Writer.create()) {
-        if (message.Key !== "") {
-            writer.uint32(10).string(message.Key);
+        if (message.Section !== 0) {
+            writer.uint32(8).int32(message.Section);
         }
         if (message.Content !== "") {
             writer.uint32(18).string(message.Content);
@@ -437,10 +507,10 @@ export const TextElement = {
             const tag = reader.uint32();
             switch (tag >>> 3) {
                 case 1:
-                    if (tag !== 10) {
+                    if (tag !== 8) {
                         break;
                     }
-                    message.Key = reader.string();
+                    message.Section = reader.int32();
                     continue;
                 case 2:
                     if (tag !== 18) {
@@ -458,14 +528,14 @@ export const TextElement = {
     },
     fromJSON(object) {
         return {
-            Key: isSet(object.Key) ? globalThis.String(object.Key) : "",
+            Section: isSet(object.Section) ? sectionFromJSON(object.Section) : 0,
             Content: isSet(object.Content) ? globalThis.String(object.Content) : "",
         };
     },
     toJSON(message) {
         const obj = {};
-        if (message.Key !== "") {
-            obj.Key = message.Key;
+        if (message.Section !== 0) {
+            obj.Section = sectionToJSON(message.Section);
         }
         if (message.Content !== "") {
             obj.Content = message.Content;
@@ -478,7 +548,7 @@ export const TextElement = {
     fromPartial(object) {
         var _a, _b;
         const message = createBaseTextElement();
-        message.Key = (_a = object.Key) !== null && _a !== void 0 ? _a : "";
+        message.Section = (_a = object.Section) !== null && _a !== void 0 ? _a : 0;
         message.Content = (_b = object.Content) !== null && _b !== void 0 ? _b : "";
         return message;
     },

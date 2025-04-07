@@ -52,7 +52,17 @@ message EmailTemplates {
 }
 
 message TextElement {
-    string Key = 1; // Identifier for this content block (e.g., "header", "greeting")
-    string Content = 2; // The content text to be translated
+    Section Section = 1; // Block identifier
+    string Content = 2; // The content text
 }
 
+enum Section {
+    NOT_USED_EMAIL_SECTION = 0;
+    SUBJECT = 1;
+    HEADER = 2;
+    BODY_INTRO = 3; // Greeting, introduction, etc.
+    BODY_MAIN = 4; // Main content of the email
+    BODY_DETAILS = 5; // Additional details or information if needed
+    FOOTER = 6;
+    SIGNATURE = 7; 
+}
