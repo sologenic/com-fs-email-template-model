@@ -21,6 +21,6 @@ type SupportTicketSubmissionData struct {
 	UserName              string
 	TicketID              string
 	SubmissionTime        string
-	ExpectedResponseHours int
+	ExpectedResponseHours string
 	SupportEmail          string
 }
