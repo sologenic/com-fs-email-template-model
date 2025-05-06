@@ -1,5 +1,11 @@
 package emailtemplate
 
+import (
+	"reflect"
+
+	emailtemplate "github.com/sologenic/com-fs-email-template-model"
+)
+
 // TemplateData is a marker interface for all template data types
 type TemplateData interface{}
 
@@ -22,5 +28,44 @@ type SupportTicketSubmissionData struct {
 	TicketID              string
 	SubmissionTime        string
 	ExpectedResponseHours string
-	SupportEmail          string
+}
+
+type ParameterMeta struct {
+	Key         string
+	Label       string
+	Description string
+	Required    bool
+}
+
+var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type{
+	// KYC Email Templates
+	emailtemplate.EmailTemplateType_KYC_APPROVED:                reflect.TypeOf(KYCEmailData{}),
+	emailtemplate.EmailTemplateType_KYC_REJECTED:                reflect.TypeOf(KYCEmailData{}),
+	emailtemplate.EmailTemplateType_KYC_NOT_PROCESSABLE_FOREVER: reflect.TypeOf(KYCEmailData{}),
+	emailtemplate.EmailTemplateType_KYC_FIX_REQUEST:             reflect.TypeOf(KYCEmailData{}),
+	emailtemplate.EmailTemplateType_KYC_ADMIN_DENIED:            reflect.TypeOf(KYCEmailData{}),
+	// Support Ticket Templates
+	emailtemplate.EmailTemplateType_SUPPORT_TICKET_SUBMITTED: reflect.TypeOf(SupportTicketSubmissionData{}),
+	// Organization Templates
+	emailtemplate.EmailTemplateType_ORGANIZATION_ONBOARDING: reflect.TypeOf(OrganizationEmailData{}),
+}
+
+func StructForTemplateType(templateType emailtemplate.EmailTemplateType) (TemplateData, bool) {
+	if dataType, exists := EmailTemplateDataRegistry[templateType]; exists {
+		newInstance := reflect.New(dataType).Interface()
+		return newInstance, true
+	}
+	return nil, false
+}
+
+func FieldNamesForTemplateType(templateType emailtemplate.EmailTemplateType) []string {
+	if dataType, exists := EmailTemplateDataRegistry[templateType]; exists {
+		numFields := dataType.NumField()
+		fieldNames := make([]string, numFields)
+		for i := 0; i < numFields; i++ {
+			fieldNames[i] = dataType.Field(i).Name
+		}
+		return fieldNames
+	}
+	return []string{}
 }

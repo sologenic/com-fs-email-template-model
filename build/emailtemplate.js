@@ -21,6 +21,10 @@ export var EmailTemplateType;
     EmailTemplateType[EmailTemplateType["KYC_NOT_PROCESSABLE_FOREVER"] = 3] = "KYC_NOT_PROCESSABLE_FOREVER";
     EmailTemplateType[EmailTemplateType["KYC_FIX_REQUEST"] = 4] = "KYC_FIX_REQUEST";
     EmailTemplateType[EmailTemplateType["KYC_ADMIN_DENIED"] = 5] = "KYC_ADMIN_DENIED";
+    /**
+     * SUPPORT_TICKET_SUBMITTED - Support ticket templates
+     * Target: End User
+     */
     EmailTemplateType[EmailTemplateType["SUPPORT_TICKET_SUBMITTED"] = 6] = "SUPPORT_TICKET_SUBMITTED";
     /**
      * ORGANIZATION_ONBOARDING - Organization Templates (configurable by Sologenic Admin)
@@ -339,6 +343,101 @@ export const EmailTemplateDetails = {
         message.CreatedAt = (_h = object.CreatedAt) !== null && _h !== void 0 ? _h : undefined;
         message.UpdatedAt = (_j = object.UpdatedAt) !== null && _j !== void 0 ? _j : undefined;
         message.Network = (_k = object.Network) !== null && _k !== void 0 ? _k : undefined;
+        return message;
+    },
+};
+function createBaseParameter() {
+    return { Key: "", Label: "", Description: undefined, IsRequired: false };
+}
+export const Parameter = {
+    encode(message, writer = _m0.Writer.create()) {
+        if (message.Key !== "") {
+            writer.uint32(10).string(message.Key);
+        }
+        if (message.Label !== "") {
+            writer.uint32(18).string(message.Label);
+        }
+        if (message.Description !== undefined) {
+            writer.uint32(26).string(message.Description);
+        }
+        if (message.IsRequired !== false) {
+            writer.uint32(32).bool(message.IsRequired);
+        }
+        return writer;
+    },
+    decode(input, length) {
+        const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+        let end = length === undefined ? reader.len : reader.pos + length;
+        const message = createBaseParameter();
+        while (reader.pos < end) {
+            const tag = reader.uint32();
+            switch (tag >>> 3) {
+                case 1:
+                    if (tag !== 10) {
+                        break;
+                    }
+                    message.Key = reader.string();
+                    continue;
+                case 2:
+                    if (tag !== 18) {
+                        break;
+                    }
+                    message.Label = reader.string();
+                    continue;
+                case 3:
+                    if (tag !== 26) {
+                        break;
+                    }
+                    message.Description = reader.string();
+                    continue;
+                case 4:
+                    if (tag !== 32) {
+                        break;
+                    }
+                    message.IsRequired = reader.bool();
+                    continue;
+            }
+            if ((tag & 7) === 4 || tag === 0) {
+                break;
+            }
+            reader.skipType(tag & 7);
+        }
+        return message;
+    },
+    fromJSON(object) {
+        return {
+            Key: isSet(object.Key) ? globalThis.String(object.Key) : "",
+            Label: isSet(object.Label) ? globalThis.String(object.Label) : "",
+            Description: isSet(object.Description) ? globalThis.String(object.Description) : undefined,
+            IsRequired: isSet(object.IsRequired) ? globalThis.Boolean(object.IsRequired) : false,
+        };
+    },
+    toJSON(message) {
+        const obj = {};
+        if (message.Key !== "") {
+            obj.Key = message.Key;
+        }
+        if (message.Label !== "") {
+            obj.Label = message.Label;
+        }
+        if (message.Description !== undefined) {
+            obj.Description = message.Description;
+        }
+        if (message.IsRequired !== false) {
+            obj.IsRequired = message.IsRequired;
+        }
+        return obj;
+    },
+    create(base) {
+        return Parameter.fromPartial(base !== null && base !== void 0 ? base : {});
+    },
+    fromPartial(object) {
+        var _a, _b, _c, _d;
+        const message = createBaseParameter();
+        message.Key = (_a = object.Key) !== null && _a !== void 0 ? _a : "";
+        message.Label = (_b = object.Label) !== null && _b !== void 0 ? _b : "";
+        message.Description = (_c = object.Description) !== null && _c !== void 0 ? _c : undefined;
+        message.IsRequired = (_d = object.IsRequired) !== null && _d !== void 0 ? _d : false;
         return message;
     },
 };
