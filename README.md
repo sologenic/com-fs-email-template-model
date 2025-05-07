@@ -37,22 +37,22 @@ TemplateData are defined `/domain/emailtemplate.go` and are passed to the templa
 
 These templates receive a `KYCEmailData` structure with the following variables:
 
-| Variable | Description |
-|----------|-------------|
-| `{{.UserName}}` | The user's display name |
+| Variable               | Description                                        |
+| ---------------------- | -------------------------------------------------- |
+| `{{.UserName}}`        | The user's display name                            |
 | `{{.RejectionReason}}` | Reason for KYC rejection (for rejection templates) |
-| `{{.ExternalUserID}}` | External user identifier |
-| `{{.AccountID}}` | Internal account ID |
-| `{{.ClientComment}}` | Comment provided by the client |
-| `{{.AdminComment}}` | Comment provided by the administrator |
+| `{{.ExternalUserID}}`  | External user identifier                           |
+| `{{.AccountID}}`       | Internal account ID                                |
+| `{{.ClientComment}}`   | Comment provided by the client                     |
+| `{{.AdminComment}}`    | Comment provided by the administrator              |
 
 ### Organization Templates (Type 100+)
 
 These templates receive an `OrganizationEmailData` structure with:
 
-| Variable | Description |
-|----------|-------------|
-| `{{.AdminName}}` | Organization administrator's name |
+| Variable          | Description                        |
+| ----------------- | ---------------------------------- |
+| `{{.AdminName}}`  | Organization administrator's name  |
 | `{{.AdminEmail}}` | Organization administrator's email |
 
 
@@ -92,8 +92,23 @@ type NewTemplateData struct {
 }
 ```
 
-3. Create System Template
+3. Register the Template Type in EmailTemplateDataRegistry Add your new template type to the registry in `emailtemplate.go`:
+
+```go
+var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type{
+    // ...    
+    // Add your new template type
+    emailtemplate.EmailTemplateType_NEW_NOTIFICATION_TYPE: reflect.TypeOf(NewTemplateData{}),
+}
+```
+
+This registry enables:
+* Automatic field name discovery for templates
+* Type-safe parameter validation and extraction
+* Consistent data structures across the application
+
+4. Create System Template
 Sign in to the Admin dashboard as Sologenic Admin account and create a new system template with the new template type.
 
-4. Implement Notification Handler
+5. Implement Notification Handler
 Add a handler in the notification service (`com-be-notification-email-listener`) to use your template.
