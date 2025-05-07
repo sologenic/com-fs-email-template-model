@@ -1,6 +1,7 @@
 package emailtemplate
 
 import (
+	"fmt"
 	"reflect"
 
 	emailtemplate "github.com/sologenic/com-fs-email-template-model"
@@ -50,22 +51,14 @@ var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type
 	emailtemplate.EmailTemplateType_ORGANIZATION_ONBOARDING: reflect.TypeOf(OrganizationEmailData{}),
 }
 
-func StructForTemplateType(templateType emailtemplate.EmailTemplateType) (TemplateData, bool) {
-	if dataType, exists := EmailTemplateDataRegistry[templateType]; exists {
-		newInstance := reflect.New(dataType).Interface()
-		return newInstance, true
-	}
-	return nil, false
-}
-
-func FieldNamesForTemplateType(templateType emailtemplate.EmailTemplateType) []string {
+func FieldNamesForTemplateType(templateType emailtemplate.EmailTemplateType) ([]string, error) {
 	if dataType, exists := EmailTemplateDataRegistry[templateType]; exists {
 		numFields := dataType.NumField()
 		fieldNames := make([]string, numFields)
 		for i := 0; i < numFields; i++ {
 			fieldNames[i] = dataType.Field(i).Name
 		}
-		return fieldNames
+		return fieldNames, nil
 	}
-	return []string{}
+	return nil, fmt.Errorf("template type %s not found in registry", templateType)
 }
