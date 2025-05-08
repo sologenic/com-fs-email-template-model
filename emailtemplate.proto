@@ -26,7 +26,14 @@ message EmailTemplateDetails {
     // Non-standard metadata: Network here is optional. In other cases it is almost always required
     google.protobuf.Timestamp CreatedAt = 8;
     google.protobuf.Timestamp UpdatedAt = 9;
-    optional metadata.Network Network = 10; 
+    optional metadata.Network Network = 10;
+}
+
+message Parameter {
+    string Key = 1; // e.g. "User.FirstName", "KYC.Status" -> {{User.FirstName}}, {{KYC.Status}}
+    string Label = 2; // Label presented in the UI
+    optional string Description = 3;
+    bool IsRequired = 4;
 }
 
 enum EmailTemplateType {
@@ -38,6 +45,9 @@ enum EmailTemplateType {
     KYC_NOT_PROCESSABLE_FOREVER = 3;
     KYC_FIX_REQUEST = 4;
     KYC_ADMIN_DENIED = 5;
+
+    // Support ticket templates
+    // Target: End User
     SUPPORT_TICKET_SUBMITTED = 6;
 
     // Organization Templates (configurable by Sologenic Admin)
