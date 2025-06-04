@@ -121,15 +121,6 @@ export interface EmailTemplateDetails {
   Network?: Network | undefined;
 }
 
-export interface Parameter {
-  /** e.g. "User.FirstName", "KYC.Status" -> {{User.FirstName}}, {{KYC.Status}} */
-  Key: string;
-  /** Label presented in the UI */
-  Label: string;
-  Description?: string | undefined;
-  IsRequired: boolean;
-}
-
 export interface EmailTemplates {
   EmailTemplates: EmailTemplate[];
 }
@@ -411,110 +402,6 @@ export const EmailTemplateDetails = {
     message.CreatedAt = object.CreatedAt ?? undefined;
     message.UpdatedAt = object.UpdatedAt ?? undefined;
     message.Network = object.Network ?? undefined;
-    return message;
-  },
-};
-
-function createBaseParameter(): Parameter {
-  return { Key: "", Label: "", Description: undefined, IsRequired: false };
-}
-
-export const Parameter = {
-  encode(message: Parameter, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.Key !== "") {
-      writer.uint32(10).string(message.Key);
-    }
-    if (message.Label !== "") {
-      writer.uint32(18).string(message.Label);
-    }
-    if (message.Description !== undefined) {
-      writer.uint32(26).string(message.Description);
-    }
-    if (message.IsRequired !== false) {
-      writer.uint32(32).bool(message.IsRequired);
-    }
-    return writer;
-  },
-
-  decode(input: _m0.Reader | Uint8Array, length?: number): Parameter {
-    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
-    let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseParameter();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          if (tag !== 10) {
-            break;
-          }
-
-          message.Key = reader.string();
-          continue;
-        case 2:
-          if (tag !== 18) {
-            break;
-          }
-
-          message.Label = reader.string();
-          continue;
-        case 3:
-          if (tag !== 26) {
-            break;
-          }
-
-          message.Description = reader.string();
-          continue;
-        case 4:
-          if (tag !== 32) {
-            break;
-          }
-
-          message.IsRequired = reader.bool();
-          continue;
-      }
-      if ((tag & 7) === 4 || tag === 0) {
-        break;
-      }
-      reader.skipType(tag & 7);
-    }
-    return message;
-  },
-
-  fromJSON(object: any): Parameter {
-    return {
-      Key: isSet(object.Key) ? globalThis.String(object.Key) : "",
-      Label: isSet(object.Label) ? globalThis.String(object.Label) : "",
-      Description: isSet(object.Description) ? globalThis.String(object.Description) : undefined,
-      IsRequired: isSet(object.IsRequired) ? globalThis.Boolean(object.IsRequired) : false,
-    };
-  },
-
-  toJSON(message: Parameter): unknown {
-    const obj: any = {};
-    if (message.Key !== "") {
-      obj.Key = message.Key;
-    }
-    if (message.Label !== "") {
-      obj.Label = message.Label;
-    }
-    if (message.Description !== undefined) {
-      obj.Description = message.Description;
-    }
-    if (message.IsRequired !== false) {
-      obj.IsRequired = message.IsRequired;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Parameter>, I>>(base?: I): Parameter {
-    return Parameter.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Parameter>, I>>(object: I): Parameter {
-    const message = createBaseParameter();
-    message.Key = object.Key ?? "";
-    message.Label = object.Label ?? "";
-    message.Description = object.Description ?? undefined;
-    message.IsRequired = object.IsRequired ?? false;
     return message;
   },
 };

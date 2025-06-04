@@ -31,13 +31,6 @@ type SupportTicketSubmissionData struct {
 	ExpectedResponseHours string
 }
 
-type ParameterMeta struct {
-	Key         string
-	Label       string
-	Description string
-	Required    bool
-}
-
 var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type{
 	// KYC Email Templates
 	emailtemplate.EmailTemplateType_KYC_APPROVED:                reflect.TypeOf(KYCEmailData{}),

@@ -51,14 +51,6 @@ export interface EmailTemplateDetails {
     UpdatedAt: Date | undefined;
     Network?: Network | undefined;
 }
-export interface Parameter {
-    /** e.g. "User.FirstName", "KYC.Status" -> {{User.FirstName}}, {{KYC.Status}} */
-    Key: string;
-    /** Label presented in the UI */
-    Label: string;
-    Description?: string | undefined;
-    IsRequired: boolean;
-}
 export interface EmailTemplates {
     EmailTemplates: EmailTemplate[];
 }
@@ -223,34 +215,6 @@ export declare const EmailTemplateDetails: {
         UpdatedAt?: Date | undefined;
         Network?: Network | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof EmailTemplateDetails>]: never; }>(object: I_1): EmailTemplateDetails;
-};
-export declare const Parameter: {
-    encode(message: Parameter, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): Parameter;
-    fromJSON(object: any): Parameter;
-    toJSON(message: Parameter): unknown;
-    create<I extends {
-        Key?: string | undefined;
-        Label?: string | undefined;
-        Description?: string | undefined;
-        IsRequired?: boolean | undefined;
-    } & {
-        Key?: string | undefined;
-        Label?: string | undefined;
-        Description?: string | undefined;
-        IsRequired?: boolean | undefined;
-    } & { [K in Exclude<keyof I, keyof Parameter>]: never; }>(base?: I | undefined): Parameter;
-    fromPartial<I_1 extends {
-        Key?: string | undefined;
-        Label?: string | undefined;
-        Description?: string | undefined;
-        IsRequired?: boolean | undefined;
-    } & {
-        Key?: string | undefined;
-        Label?: string | undefined;
-        Description?: string | undefined;
-        IsRequired?: boolean | undefined;
-    } & { [K_1 in Exclude<keyof I_1, keyof Parameter>]: never; }>(object: I_1): Parameter;
 };
 export declare const EmailTemplates: {
     encode(message: EmailTemplates, writer?: _m0.Writer): _m0.Writer;
