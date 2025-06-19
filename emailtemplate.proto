@@ -7,8 +7,9 @@ option go_package = "github.com/sologenic/com-fs-email-template-model;emailtempl
 import "google/protobuf/timestamp.proto";
 import "sologenic/com-fs-utils-lib/models/metadata/metadata.proto";
 import "sologenic/com-fs-utils-lib/models/audit/audit.proto";
+import "sologenic/com-fs-utils-lib/models/language/language.proto";
 
-// Key: OrganizationID-Network-EmailTemplateType
+// Key: OrganizationID_Network_EmailTemplateType_Language
 message EmailTemplate {
     EmailTemplateDetails EmailTemplate = 1;
     audit.Audit Audit = 3;
@@ -27,6 +28,12 @@ message EmailTemplateDetails {
     google.protobuf.Timestamp CreatedAt = 8;
     google.protobuf.Timestamp UpdatedAt = 9;
     optional metadata.Network Network = 10;
+
+    // Language of the template. Defaults to English.
+    // - Sologenic admin: provides the default English template for each type
+    // - Organization admin: can add or override templates in any supported language
+    // This allows org admins to manage their own templates in multiple languages.
+    language.Language Language = 11; 
 }
 
 enum EmailTemplateType {
