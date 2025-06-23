@@ -45,7 +45,7 @@ enum EmailTemplateType {
 
     // Organization Templates
     // Target: Organization Admin
-    ORGANIZATION_ONBOARDING = 100; // Initial org admin onboarding when new org & initial admin is created by Sologenic admin
+    ORGANIZATION_ONBOARDING = 100; // Initial org admin onboarding when a new org & initial admin are created by Sologenic admin
     ORGANIZATION_NEW_ADMIN = 101; // New org admin added
 }
 

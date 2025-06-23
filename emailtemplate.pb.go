@@ -39,7 +39,7 @@ const (
 	EmailTemplateType_SUPPORT_TICKET_SUBMITTED EmailTemplateType = 6
 	// Organization Templates
 	// Target: Organization Admin
-	EmailTemplateType_ORGANIZATION_ONBOARDING EmailTemplateType = 100 // Initial org admin onboarding when new org & initial admin is created by Sologenic admin
+	EmailTemplateType_ORGANIZATION_ONBOARDING EmailTemplateType = 100 // Initial org admin onboarding when a new org & initial admin are created by Sologenic admin
 	EmailTemplateType_ORGANIZATION_NEW_ADMIN  EmailTemplateType = 101 // New org admin added
 )
 
