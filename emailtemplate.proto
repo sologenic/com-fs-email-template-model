@@ -43,9 +43,10 @@ enum EmailTemplateType {
     // Target: End User
     SUPPORT_TICKET_SUBMITTED = 6;
 
-    // Organization Templates (configurable by Sologenic Admin)
+    // Organization Templates
     // Target: Organization Admin
-    ORGANIZATION_ONBOARDING = 100;
+    ORGANIZATION_ONBOARDING = 100; // Initial org admin onboarding when a new org & initial admin are created by Sologenic admin
+    ORGANIZATION_NEW_ADMIN = 101; // New org admin added
 }
 
 message EmailTemplates {

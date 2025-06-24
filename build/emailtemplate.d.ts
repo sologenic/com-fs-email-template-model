@@ -19,10 +19,12 @@ export declare enum EmailTemplateType {
      */
     SUPPORT_TICKET_SUBMITTED = 6,
     /**
-     * ORGANIZATION_ONBOARDING - Organization Templates (configurable by Sologenic Admin)
+     * ORGANIZATION_ONBOARDING - Organization Templates
      * Target: Organization Admin
      */
     ORGANIZATION_ONBOARDING = 100,
+    /** ORGANIZATION_NEW_ADMIN - New org admin added */
+    ORGANIZATION_NEW_ADMIN = 101,
     UNRECOGNIZED = -1
 }
 export declare function emailTemplateTypeFromJSON(object: any): EmailTemplateType;

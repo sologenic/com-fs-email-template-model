@@ -42,6 +42,7 @@ var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type
 	emailtemplate.EmailTemplateType_SUPPORT_TICKET_SUBMITTED: reflect.TypeOf(SupportTicketSubmissionData{}),
 	// Organization Templates
 	emailtemplate.EmailTemplateType_ORGANIZATION_ONBOARDING: reflect.TypeOf(OrganizationEmailData{}),
+	emailtemplate.EmailTemplateType_ORGANIZATION_NEW_ADMIN:  reflect.TypeOf(OrganizationEmailData{}),
 }
 
 func FieldNamesForTemplateType(templateType emailtemplate.EmailTemplateType) ([]string, error) {
