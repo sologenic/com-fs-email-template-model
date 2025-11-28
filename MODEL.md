@@ -8,6 +8,8 @@
     - [EmailTemplate](#emailtemplate)
     - [EmailTemplateDetails](#emailtemplatedetails)
     - [EmailTemplates](#emailtemplates)
+  - [Enums](#enums)
+    - [EmailTemplateType](#emailtemplatetype)
 - [Version Information](#version-information)
 - [Support](#support)
 
@@ -95,6 +97,36 @@ The `EmailTemplates` message represents a collection of emailtemplate with pagin
 
 **Important Notes:**
 - This message provides the emailtemplates representation
+
+### Enums
+
+#### EmailTemplateType {#emailtemplatetype}
+
+The `EmailTemplateType` enum defines the possible states or types for email template, allowing for classification and state management.
+
+**Value Table:**
+
+| Value Name | Number | Description |
+|------------|--------|-------------|
+| NOT_USED_EMAIL_TEMPLATE_TYPE | 0 | Default/unused value (protobuf convention) |
+| KYC_APPROVED | 1 | Kyc Approved state or type |
+| KYC_REJECTED | 2 | Kyc Rejected state or type |
+| KYC_NOT_PROCESSABLE_FOREVER | 3 | Kyc Not Processable Forever state or type |
+| KYC_FIX_REQUEST | 4 | Kyc Fix Request state or type |
+| KYC_ADMIN_DENIED | 5 | Kyc Admin Denied state or type |
+| SUPPORT_TICKET_SUBMITTED | 6 | Support Ticket Submitted state or type |
+| ORGANIZATION_ONBOARDING | 100 | Organization Onboarding state or type |
+| ORGANIZATION_NEW_ADMIN | 101 | Organization New Admin state or type |
+
+**Use Cases:**
+- Setting emailtemplatetype for items
+- Filtering items by emailtemplatetype in queries
+- Enforcing business logic based on emailtemplatetype
+
+**Important Notes:**
+- Values with `NOT_USED` prefix or number 0 follow protobuf conventions for default enum values and should not be actively used
+- Only valid emailtemplatetype values should be used in production code
+- EmailTemplateType changes should be tracked in audit trails for compliance purposes
 
 ## Version Information
 
