@@ -2,13 +2,21 @@
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [emailtemplate.proto](#emailtemplate)
+  - [Messages](#messages)
+    - [EmailTemplate](#emailtemplate)
+- [Version Information](#version-information)
+- [Support](#support)
 
 ## Overview
 
-The Email Template provides data structures and definitions for managing email template within the system.
+The Email Template provides a comprehensive data structure for managing email template within the system. This model supports metadata and audit: includes metadata and audit trails for tracking changes, and more. 
 
-## emailtemplate.proto {#emailtemplate}
+Key features of the {model_name.lower()} model include:
+- **Metadata and Audit**: Includes metadata and audit trails for tracking changes
+
+## emailtemplate.proto
 
 ### Package Information
 
@@ -17,27 +25,40 @@ The Email Template provides data structures and definitions for managing email t
 
 ### Overview
 
-The `emailtemplate.proto` file defines the Emailtemplate model.
+The `emailtemplate.proto` file defines the core emailtemplate model for email template management. It provides message types for representing emailtemplate data and operations. The file integrates with external utility libraries: `metadata.proto`, `audit.proto`.
 
 ### Messages
 
-#### EmailTemplate
+#### EmailTemplate {#emailtemplate}
+
+The `EmailTemplate` message provides emailtemplate data and operations.
 
 **Field Table:**
 
-| Field Name | Type | Number | Description |
-|------------|------|--------|-------------|
-| PlainText | `string` | 7 |  |
-| CreatedAt | `Timestamp` | 8 |  |
-| UpdatedAt | `Timestamp` | 9 |  |
-| Network | `Network` | 10 |  |
+| Field Name | Type | Required/Optional | Description |
+|------------|------|-------------------|-------------|
+| PlainText | `string` | Required | PlainText value |
+| CreatedAt | `google.protobuf.Timestamp` | Required | CreatedAt field |
+| UpdatedAt | `google.protobuf.Timestamp` | Required | UpdatedAt field |
+| Network | `metadata.Network` | Optional | Metadata information including network and version details |
+
+**Use Cases:**
+- Creating new emailtemplate records
+- Retrieving emailtemplate information
+- Updating emailtemplate data
+
+**Important Notes:**
+- This message provides the emailtemplate representation
 
 ## Version Information
 
-This documentation corresponds to the current version of the proto files in this repository.
+This documentation corresponds to the Protocol Buffer definitions in `emailtemplate.proto`. The proto file(s) use `proto3` syntax. When referencing this documentation, ensure that the version of the proto files matches the version of the generated code and API implementations you are using.
 
 ## Support
 
-For more information, see:
-- README.md in this repository
-- Protocol Buffer documentation
+For additional information and support:
+- See `README.md` for project setup, installation, and usage instructions
+- Refer to the Protocol Buffer definitions in `emailtemplate.proto` for the authoritative source of truth
+- Check the imported utility libraries for details on related types:
+  - `sologenic/com-fs-utils-lib/models/metadata/metadata.proto`
+  - `sologenic/com-fs-utils-lib/models/audit/audit.proto`
