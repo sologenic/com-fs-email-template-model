@@ -15,7 +15,7 @@
 
 The Email Template provides a comprehensive data structure for managing email template within the system. This model supports organizational context: links items to organizations via organizationid, metadata and audit: includes metadata and audit trails for tracking changes, and more. 
 
-Key features of the {model_name.lower()} model include:
+Key features of the email template model include:
 - **Organizational Context**: Links items to organizations via OrganizationID
 - **Metadata and Audit**: Includes metadata and audit trails for tracking changes
 
@@ -66,8 +66,8 @@ The `EmailTemplateDetails` message contains all the core information about a ema
 | HTML | `string` | Required | HTML content |
 | Description | `string` | Required | Description for internal use |
 | PlainText | `string` | Required | fallback for HTML content |
-| CreatedAt | `google.protobuf.Timestamp` | Required | CreatedAt field |
-| UpdatedAt | `google.protobuf.Timestamp` | Required | UpdatedAt field |
+| CreatedAt | `google.protobuf.Timestamp` | Required | Timestamp information |
+| UpdatedAt | `google.protobuf.Timestamp` | Required | Timestamp information |
 | Network | `metadata.Network` | Optional | Metadata information including network and version details |
 
 **Use Cases:**
