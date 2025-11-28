@@ -37,6 +37,7 @@ The `EmailTemplate` message provides emailtemplate data and operations.
 
 | Field Name | Type | Required/Optional | Description |
 |------------|------|-------------------|-------------|
+| PlainText | `string` | Required | fallback for HTML content |
 | CreatedAt | `google.protobuf.Timestamp` | Required | CreatedAt field |
 | UpdatedAt | `google.protobuf.Timestamp` | Required | UpdatedAt field |
 | Network | `metadata.Network` | Optional | Metadata information including network and version details |
