@@ -26,6 +26,8 @@ export var EmailTemplateType;
      * Target: End User
      */
     EmailTemplateType[EmailTemplateType["SUPPORT_TICKET_SUBMITTED"] = 6] = "SUPPORT_TICKET_SUBMITTED";
+    /** BILLING_LOW_BALANCE_WARNING - Billing */
+    EmailTemplateType[EmailTemplateType["BILLING_LOW_BALANCE_WARNING"] = 7] = "BILLING_LOW_BALANCE_WARNING";
     /**
      * ORGANIZATION_ONBOARDING - Organization Templates
      * Target: Organization Admin
@@ -58,6 +60,9 @@ export function emailTemplateTypeFromJSON(object) {
         case 6:
         case "SUPPORT_TICKET_SUBMITTED":
             return EmailTemplateType.SUPPORT_TICKET_SUBMITTED;
+        case 7:
+        case "BILLING_LOW_BALANCE_WARNING":
+            return EmailTemplateType.BILLING_LOW_BALANCE_WARNING;
         case 100:
         case "ORGANIZATION_ONBOARDING":
             return EmailTemplateType.ORGANIZATION_ONBOARDING;
@@ -86,6 +91,8 @@ export function emailTemplateTypeToJSON(object) {
             return "KYC_ADMIN_DENIED";
         case EmailTemplateType.SUPPORT_TICKET_SUBMITTED:
             return "SUPPORT_TICKET_SUBMITTED";
+        case EmailTemplateType.BILLING_LOW_BALANCE_WARNING:
+            return "BILLING_LOW_BALANCE_WARNING";
         case EmailTemplateType.ORGANIZATION_ONBOARDING:
             return "ORGANIZATION_ONBOARDING";
         case EmailTemplateType.ORGANIZATION_NEW_ADMIN:

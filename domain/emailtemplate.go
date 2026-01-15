@@ -31,6 +31,14 @@ type SupportTicketSubmissionData struct {
 	ExpectedResponseHours string
 }
 
+type BillingLowBalanceWarningData struct {
+	AdminName        string
+	OrganizationName string
+	CurrentBalance   string
+	Threshold        string
+	TriggerType      string
+}
+
 var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type{
 	// KYC Email Templates
 	emailtemplate.EmailTemplateType_KYC_APPROVED:                reflect.TypeOf(KYCEmailData{}),
@@ -43,6 +51,8 @@ var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type
 	// Organization Templates
 	emailtemplate.EmailTemplateType_ORGANIZATION_ONBOARDING: reflect.TypeOf(OrganizationEmailData{}),
 	emailtemplate.EmailTemplateType_ORGANIZATION_NEW_ADMIN:  reflect.TypeOf(OrganizationEmailData{}),
+	// Billing Templates
+	emailtemplate.EmailTemplateType_BILLING_LOW_BALANCE_WARNING: reflect.TypeOf(BillingLowBalanceWarningData{}),
 }
 
 func FieldNamesForTemplateType(templateType emailtemplate.EmailTemplateType) ([]string, error) {

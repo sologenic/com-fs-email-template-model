@@ -18,6 +18,8 @@ export declare enum EmailTemplateType {
      * Target: End User
      */
     SUPPORT_TICKET_SUBMITTED = 6,
+    /** BILLING_LOW_BALANCE_WARNING - Billing */
+    BILLING_LOW_BALANCE_WARNING = 7,
     /**
      * ORGANIZATION_ONBOARDING - Organization Templates
      * Target: Organization Admin

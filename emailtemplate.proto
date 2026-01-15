@@ -5,8 +5,8 @@ package emailtemplate;
 option go_package = "github.com/sologenic/com-fs-email-template-model;emailtemplate";
 
 import "google/protobuf/timestamp.proto";
-import "sologenic/com-fs-utils-lib/models/metadata/metadata.proto";
 import "sologenic/com-fs-utils-lib/models/audit/audit.proto";
+import "sologenic/com-fs-utils-lib/models/metadata/metadata.proto";
 
 // Key: OrganizationID-Network-EmailTemplateType
 message EmailTemplate {
@@ -42,6 +42,9 @@ enum EmailTemplateType {
     // Support ticket templates
     // Target: End User
     SUPPORT_TICKET_SUBMITTED = 6;
+
+    // Billing
+    BILLING_LOW_BALANCE_WARNING = 7;
 
     // Organization Templates
     // Target: Organization Admin
