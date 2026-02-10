@@ -46,6 +46,9 @@ enum EmailTemplateType {
     // Billing
     BILLING_LOW_BALANCE_WARNING = 7;
 
+    // Referral
+    REFERRAL_SHARED = 8; // When a user shares their referral code with someone else
+    
     // Organization Templates
     // Target: Organization Admin
     ORGANIZATION_ONBOARDING = 100; // Initial org admin onboarding when a new org & initial admin are created by Sologenic admin
