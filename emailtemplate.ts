@@ -30,6 +30,8 @@ export enum EmailTemplateType {
   SUPPORT_TICKET_SUBMITTED = 6,
   /** BILLING_LOW_BALANCE_WARNING - Billing */
   BILLING_LOW_BALANCE_WARNING = 7,
+  /** REFERRAL_SHARED - Referral */
+  REFERRAL_SHARED = 8,
   /**
    * ORGANIZATION_ONBOARDING - Organization Templates
    * Target: Organization Admin
@@ -66,6 +68,9 @@ export function emailTemplateTypeFromJSON(object: any): EmailTemplateType {
     case 7:
     case "BILLING_LOW_BALANCE_WARNING":
       return EmailTemplateType.BILLING_LOW_BALANCE_WARNING;
+    case 8:
+    case "REFERRAL_SHARED":
+      return EmailTemplateType.REFERRAL_SHARED;
     case 100:
     case "ORGANIZATION_ONBOARDING":
       return EmailTemplateType.ORGANIZATION_ONBOARDING;
@@ -97,6 +102,8 @@ export function emailTemplateTypeToJSON(object: EmailTemplateType): string {
       return "SUPPORT_TICKET_SUBMITTED";
     case EmailTemplateType.BILLING_LOW_BALANCE_WARNING:
       return "BILLING_LOW_BALANCE_WARNING";
+    case EmailTemplateType.REFERRAL_SHARED:
+      return "REFERRAL_SHARED";
     case EmailTemplateType.ORGANIZATION_ONBOARDING:
       return "ORGANIZATION_ONBOARDING";
     case EmailTemplateType.ORGANIZATION_NEW_ADMIN:
