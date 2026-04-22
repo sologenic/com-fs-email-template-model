@@ -24,6 +24,12 @@ type OrganizationEmailData struct {
 	AdminEmail string
 }
 
+type PartnerEmailData struct {
+	PartnerName  string
+	PartnerEmail string
+	InviteLink   string
+}
+
 type SupportTicketSubmissionData struct {
 	UserName              string
 	TicketID              string
