@@ -29,6 +29,8 @@ export declare enum EmailTemplateType {
     ORGANIZATION_ONBOARDING = 100,
     /** ORGANIZATION_NEW_ADMIN - New org admin added */
     ORGANIZATION_NEW_ADMIN = 101,
+    /** PARTNER_ONBOARDING - Partner Templates */
+    PARTNER_ONBOARDING = 200,
     UNRECOGNIZED = -1
 }
 export declare function emailTemplateTypeFromJSON(object: any): EmailTemplateType;

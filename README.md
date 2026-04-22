@@ -60,7 +60,7 @@ These templates receive an `OrganizationEmailData` structure with:
 
 This section describes how to add a new email template type to the system.
 
-> **Note**: Only Sologenic admin can add new email template types.
+> **Note**: Only TX admin can add new email template types.
 
 1. Define the Template Type in Proto Definition
 
@@ -108,7 +108,7 @@ This registry enables:
 * Consistent data structures across the application
 
 4. Create System Template
-Sign in to the Admin dashboard as Sologenic Admin account and create a new system template with the new template type.
+Sign in to the Admin dashboard as TX Admin account and create a new system template with the new template type.
 
 5. Implement Notification Handler
 Add a handler in the notification service (`com-be-notification-email-listener`) to use your template.

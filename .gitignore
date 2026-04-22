@@ -1,3 +1,4 @@
 node_modules
 tmp
 settings.json
+.DS_Store
