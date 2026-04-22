@@ -27,7 +27,7 @@ type OrganizationEmailData struct {
 type PartnerEmailData struct {
 	PartnerName  string
 	PartnerEmail string
-	InviteLink   string
+	InviteCode   string
 }
 
 type SupportTicketSubmissionData struct {
