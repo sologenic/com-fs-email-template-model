@@ -66,6 +66,8 @@ var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type
 	emailtemplate.EmailTemplateType_BILLING_LOW_BALANCE_WARNING: reflect.TypeOf(BillingLowBalanceWarningData{}),
 	// Referral Templates
 	emailtemplate.EmailTemplateType_REFERRAL_SHARED: reflect.TypeOf(ReferralSharedData{}),
+	// Partner Templates
+	emailtemplate.EmailTemplateType_PARTNER_ONBOARDING: reflect.TypeOf(PartnerEmailData{}),
 }
 
 func FieldNamesForTemplateType(templateType emailtemplate.EmailTemplateType) ([]string, error) {
