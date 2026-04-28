@@ -19,8 +19,10 @@ message EmailTemplateDetails {
     optional string OrganizationID = 2; // If not set, this is a System template
     string Name = 3; // Display Name
     string Subject = 4; // Email Subject
+    // @inject_tags: datastore:",noindex"
     string HTML = 5; // HTML content
     string Description = 6; // Description for internal use
+    // @inject_tags: datastore:",noindex"
     string PlainText = 7; // fallback for HTML content
     
     // Non-standard metadata: Network here is optional. In other cases it is almost always required

@@ -48,11 +48,11 @@ export interface EmailTemplateDetails {
     Name: string;
     /** Email Subject */
     Subject: string;
-    /** HTML content */
+    /** @inject_tags: datastore:",noindex" */
     HTML: string;
     /** Description for internal use */
     Description: string;
-    /** fallback for HTML content */
+    /** @inject_tags: datastore:",noindex" */
     PlainText: string;
     /** Non-standard metadata: Network here is optional. In other cases it is almost always required */
     CreatedAt: Date | undefined;

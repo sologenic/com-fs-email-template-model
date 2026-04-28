@@ -66,6 +66,8 @@ protoc \
     --go-grpc_opt=require_unimplemented_servers=false \
     "--go-grpc_out=." --go-grpc_opt=paths=source_relative
 
+protoc-go-inject-tag -input="*.pb.go"
+
 # if there's TS project in the package, generate a protobuf file for TS
 rm -rf node_modules
 npm i
