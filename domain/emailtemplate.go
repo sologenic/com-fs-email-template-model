@@ -50,6 +50,12 @@ type ReferralSharedData struct {
 	ReferralLink string
 }
 
+// AuthActionEmailData is merge data for password reset and email verification emails (Firebase oob links).
+type AuthActionEmailData struct {
+	ActionLink string
+	UserName   string
+}
+
 var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type{
 	// KYC Email Templates
 	emailtemplate.EmailTemplateType_KYC_APPROVED:                reflect.TypeOf(KYCEmailData{}),
@@ -68,6 +74,9 @@ var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type
 	emailtemplate.EmailTemplateType_REFERRAL_SHARED: reflect.TypeOf(ReferralSharedData{}),
 	// Partner Templates
 	emailtemplate.EmailTemplateType_PARTNER_ONBOARDING: reflect.TypeOf(PartnerEmailData{}),
+	// Firebase auth (SendGrid)
+	emailtemplate.EmailTemplateType_AUTH_PASSWORD_RESET:      reflect.TypeOf(AuthActionEmailData{}),
+	emailtemplate.EmailTemplateType_AUTH_EMAIL_VERIFICATION: reflect.TypeOf(AuthActionEmailData{}),
 }
 
 func FieldNamesForTemplateType(templateType emailtemplate.EmailTemplateType) ([]string, error) {

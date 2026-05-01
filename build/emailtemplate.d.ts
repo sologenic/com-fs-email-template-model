@@ -31,6 +31,12 @@ export declare enum EmailTemplateType {
     ORGANIZATION_NEW_ADMIN = 101,
     /** PARTNER_ONBOARDING - Partner Templates */
     PARTNER_ONBOARDING = 200,
+    /**
+     * AUTH_PASSWORD_RESET - Firebase auth (SendGrid): templates receive the Firebase-generated action URL from Admin SDK.
+     * Target: End User
+     */
+    AUTH_PASSWORD_RESET = 300,
+    AUTH_EMAIL_VERIFICATION = 301,
     UNRECOGNIZED = -1
 }
 export declare function emailTemplateTypeFromJSON(object: any): EmailTemplateType;
