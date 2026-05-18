@@ -22,6 +22,7 @@ type KYCEmailData struct {
 type OrganizationEmailData struct {
 	AdminName  string
 	AdminEmail string
+	InviteCode string
 }
 
 type PartnerEmailData struct {
