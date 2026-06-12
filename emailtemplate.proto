@@ -63,6 +63,10 @@ enum EmailTemplateType {
     // Target: End User
     AUTH_PASSWORD_RESET = 300;
     AUTH_EMAIL_VERIFICATION = 301;
+
+    // Elite Club Membership Request
+    ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED = 401;
+    ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED = 402;
 }
 
 message EmailTemplates {
