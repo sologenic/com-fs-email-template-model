@@ -37,6 +37,9 @@ export declare enum EmailTemplateType {
      */
     AUTH_PASSWORD_RESET = 300,
     AUTH_EMAIL_VERIFICATION = 301,
+    /** ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED - Elite Club Membership Request */
+    ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED = 401,
+    ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED = 402,
     UNRECOGNIZED = -1
 }
 export declare function emailTemplateTypeFromJSON(object: any): EmailTemplateType;
