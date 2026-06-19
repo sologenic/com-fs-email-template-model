@@ -13,11 +13,6 @@ export declare enum EmailTemplateType {
     KYC_NOT_PROCESSABLE_FOREVER = 3,
     KYC_FIX_REQUEST = 4,
     KYC_ADMIN_DENIED = 5,
-    /**
-     * SUPPORT_TICKET_SUBMITTED - Support ticket templates
-     * Target: End User
-     */
-    SUPPORT_TICKET_SUBMITTED = 6,
     /** BILLING_LOW_BALANCE_WARNING - Billing */
     BILLING_LOW_BALANCE_WARNING = 7,
     /** REFERRAL_SHARED - Referral */

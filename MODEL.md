@@ -114,9 +114,15 @@ The `EmailTemplateType` enum defines the possible states or types for email temp
 | KYC_NOT_PROCESSABLE_FOREVER | 3 | Kyc Not Processable Forever state or type |
 | KYC_FIX_REQUEST | 4 | Kyc Fix Request state or type |
 | KYC_ADMIN_DENIED | 5 | Kyc Admin Denied state or type |
-| SUPPORT_TICKET_SUBMITTED | 6 | Support Ticket Submitted state or type |
+| BILLING_LOW_BALANCE_WARNING | 7 | Billing low balance warning |
+| REFERRAL_SHARED | 8 | Referral shared notification |
 | ORGANIZATION_ONBOARDING | 100 | Organization Onboarding state or type |
 | ORGANIZATION_NEW_ADMIN | 101 | Organization New Admin state or type |
+| PARTNER_ONBOARDING | 200 | Partner onboarding |
+| AUTH_PASSWORD_RESET | 300 | Firebase password reset |
+| AUTH_EMAIL_VERIFICATION | 301 | Firebase email verification |
+| ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED | 401 | Elite Club membership request approved |
+| ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED | 402 | Elite Club membership request rejected |
 
 **Use Cases:**
 - Setting emailtemplatetype for items
