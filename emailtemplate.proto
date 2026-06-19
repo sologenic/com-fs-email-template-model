@@ -41,10 +41,6 @@ enum EmailTemplateType {
     KYC_FIX_REQUEST = 4;
     KYC_ADMIN_DENIED = 5;
 
-    // Support ticket templates
-    // Target: End User
-    SUPPORT_TICKET_SUBMITTED = 6;
-
     // Billing
     BILLING_LOW_BALANCE_WARNING = 7;
 

@@ -31,13 +31,6 @@ type PartnerEmailData struct {
 	InviteCode   string
 }
 
-type SupportTicketSubmissionData struct {
-	UserName              string
-	TicketID              string
-	SubmissionTime        string
-	ExpectedResponseHours string
-}
-
 type BillingLowBalanceWarningData struct {
 	AdminName        string
 	OrganizationName string
@@ -67,8 +60,6 @@ var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type
 	emailtemplate.EmailTemplateType_KYC_NOT_PROCESSABLE_FOREVER: reflect.TypeOf(KYCEmailData{}),
 	emailtemplate.EmailTemplateType_KYC_FIX_REQUEST:             reflect.TypeOf(KYCEmailData{}),
 	emailtemplate.EmailTemplateType_KYC_ADMIN_DENIED:            reflect.TypeOf(KYCEmailData{}),
-	// Support Ticket Templates
-	emailtemplate.EmailTemplateType_SUPPORT_TICKET_SUBMITTED: reflect.TypeOf(SupportTicketSubmissionData{}),
 	// Organization Templates
 	emailtemplate.EmailTemplateType_ORGANIZATION_ONBOARDING: reflect.TypeOf(OrganizationEmailData{}),
 	emailtemplate.EmailTemplateType_ORGANIZATION_NEW_ADMIN:  reflect.TypeOf(OrganizationEmailData{}),
