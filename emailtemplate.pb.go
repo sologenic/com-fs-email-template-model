@@ -45,15 +45,10 @@ const (
 	EmailTemplateType_ORGANIZATION_NEW_ADMIN  EmailTemplateType = 101 // New org admin added
 	// Partner Templates
 	EmailTemplateType_PARTNER_ONBOARDING EmailTemplateType = 200 // Initial partner onboarding when a new partner is created by TX admin
-	// Firebase auth (SendGrid): templates receive the Firebase-generated action URL from Admin SDK.
-	// Target: End User (retail app)
 	EmailTemplateType_AUTH_PASSWORD_RESET     EmailTemplateType = 300
 	EmailTemplateType_AUTH_EMAIL_VERIFICATION EmailTemplateType = 301
-	EmailTemplateType_AUTH_MFA_ENROLLED       EmailTemplateType = 302 // Security notice after authenticator enrollment (retail)
-	// Admin portal auth (SendGrid): Target: Organization / TX / Partner administrators
-	EmailTemplateType_ADMIN_AUTH_PASSWORD_RESET     EmailTemplateType = 310
-	EmailTemplateType_ADMIN_AUTH_EMAIL_VERIFICATION EmailTemplateType = 311
-	EmailTemplateType_ADMIN_MFA_ENROLLED            EmailTemplateType = 312 // Security notice after authenticator enrollment (admin)
+	EmailTemplateType_AUTH_MFA_ENROLLED       EmailTemplateType = 302
+	EmailTemplateType_AUTH_MFA_RESET          EmailTemplateType = 303
 	// Elite Club Membership Request
 	EmailTemplateType_ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED EmailTemplateType = 401
 	EmailTemplateType_ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED EmailTemplateType = 402
@@ -76,9 +71,7 @@ var (
 		300: "AUTH_PASSWORD_RESET",
 		301: "AUTH_EMAIL_VERIFICATION",
 		302: "AUTH_MFA_ENROLLED",
-		310: "ADMIN_AUTH_PASSWORD_RESET",
-		311: "ADMIN_AUTH_EMAIL_VERIFICATION",
-		312: "ADMIN_MFA_ENROLLED",
+		303: "AUTH_MFA_RESET",
 		401: "ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED",
 		402: "ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED",
 	}
@@ -97,9 +90,7 @@ var (
 		"AUTH_PASSWORD_RESET":                    300,
 		"AUTH_EMAIL_VERIFICATION":                301,
 		"AUTH_MFA_ENROLLED":                      302,
-		"ADMIN_AUTH_PASSWORD_RESET":              310,
-		"ADMIN_AUTH_EMAIL_VERIFICATION":          311,
-		"ADMIN_MFA_ENROLLED":                     312,
+		"AUTH_MFA_RESET":                         303,
 		"ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED": 401,
 		"ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED": 402,
 	}

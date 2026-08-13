@@ -34,19 +34,10 @@ export var EmailTemplateType;
     EmailTemplateType[EmailTemplateType["ORGANIZATION_NEW_ADMIN"] = 101] = "ORGANIZATION_NEW_ADMIN";
     /** PARTNER_ONBOARDING - Partner Templates */
     EmailTemplateType[EmailTemplateType["PARTNER_ONBOARDING"] = 200] = "PARTNER_ONBOARDING";
-    /**
-     * AUTH_PASSWORD_RESET - Firebase auth (SendGrid): templates receive the Firebase-generated action URL from Admin SDK.
-     * Target: End User (retail app)
-     */
     EmailTemplateType[EmailTemplateType["AUTH_PASSWORD_RESET"] = 300] = "AUTH_PASSWORD_RESET";
     EmailTemplateType[EmailTemplateType["AUTH_EMAIL_VERIFICATION"] = 301] = "AUTH_EMAIL_VERIFICATION";
-    /** AUTH_MFA_ENROLLED - Security notice after authenticator enrollment (retail) */
     EmailTemplateType[EmailTemplateType["AUTH_MFA_ENROLLED"] = 302] = "AUTH_MFA_ENROLLED";
-    /** ADMIN_AUTH_PASSWORD_RESET - Admin portal auth (SendGrid): Target: Organization / TX / Partner administrators */
-    EmailTemplateType[EmailTemplateType["ADMIN_AUTH_PASSWORD_RESET"] = 310] = "ADMIN_AUTH_PASSWORD_RESET";
-    EmailTemplateType[EmailTemplateType["ADMIN_AUTH_EMAIL_VERIFICATION"] = 311] = "ADMIN_AUTH_EMAIL_VERIFICATION";
-    /** ADMIN_MFA_ENROLLED - Security notice after authenticator enrollment (admin) */
-    EmailTemplateType[EmailTemplateType["ADMIN_MFA_ENROLLED"] = 312] = "ADMIN_MFA_ENROLLED";
+    EmailTemplateType[EmailTemplateType["AUTH_MFA_RESET"] = 303] = "AUTH_MFA_RESET";
     /** ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED - Elite Club Membership Request */
     EmailTemplateType[EmailTemplateType["ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED"] = 401] = "ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED";
     EmailTemplateType[EmailTemplateType["ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED"] = 402] = "ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED";
@@ -96,15 +87,11 @@ export function emailTemplateTypeFromJSON(object) {
         case 302:
         case "AUTH_MFA_ENROLLED":
             return EmailTemplateType.AUTH_MFA_ENROLLED;
+        case "AUTH_MFA_RESET":
+            return EmailTemplateType.AUTH_MFA_RESET;
         case 310:
-        case "ADMIN_AUTH_PASSWORD_RESET":
-            return EmailTemplateType.ADMIN_AUTH_PASSWORD_RESET;
         case 311:
-        case "ADMIN_AUTH_EMAIL_VERIFICATION":
-            return EmailTemplateType.ADMIN_AUTH_EMAIL_VERIFICATION;
         case 312:
-        case "ADMIN_MFA_ENROLLED":
-            return EmailTemplateType.ADMIN_MFA_ENROLLED;
         case 401:
         case "ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED":
             return EmailTemplateType.ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED;
@@ -147,12 +134,8 @@ export function emailTemplateTypeToJSON(object) {
             return "AUTH_EMAIL_VERIFICATION";
         case EmailTemplateType.AUTH_MFA_ENROLLED:
             return "AUTH_MFA_ENROLLED";
-        case EmailTemplateType.ADMIN_AUTH_PASSWORD_RESET:
-            return "ADMIN_AUTH_PASSWORD_RESET";
-        case EmailTemplateType.ADMIN_AUTH_EMAIL_VERIFICATION:
-            return "ADMIN_AUTH_EMAIL_VERIFICATION";
-        case EmailTemplateType.ADMIN_MFA_ENROLLED:
-            return "ADMIN_MFA_ENROLLED";
+        case EmailTemplateType.AUTH_MFA_RESET:
+            return "AUTH_MFA_RESET";
         case EmailTemplateType.ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED:
             return "ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED";
         case EmailTemplateType.ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED:
