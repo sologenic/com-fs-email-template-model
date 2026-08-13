@@ -119,8 +119,10 @@ The `EmailTemplateType` enum defines the possible states or types for email temp
 | ORGANIZATION_ONBOARDING | 100 | Organization Onboarding state or type |
 | ORGANIZATION_NEW_ADMIN | 101 | Organization New Admin state or type |
 | PARTNER_ONBOARDING | 200 | Partner onboarding |
-| AUTH_PASSWORD_RESET | 300 | Firebase password reset |
-| AUTH_EMAIL_VERIFICATION | 301 | Firebase email verification |
+| AUTH_PASSWORD_RESET | 300 | Firebase password reset (retail + admin via user-service) |
+| AUTH_EMAIL_VERIFICATION | 301 | Firebase email verification (retail + admin via user-service) |
+| AUTH_MFA_ENROLLED | 302 | MFA authenticator enrolled notice (retail + admin via user-service) |
+| AUTH_MFA_RESET | 303 | MFA factors cleared notice (e.g. admin reset) |
 | ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED | 401 | Elite Club membership request approved |
 | ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED | 402 | Elite Club membership request rejected |
 

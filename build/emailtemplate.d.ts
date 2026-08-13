@@ -26,12 +26,10 @@ export declare enum EmailTemplateType {
     ORGANIZATION_NEW_ADMIN = 101,
     /** PARTNER_ONBOARDING - Partner Templates */
     PARTNER_ONBOARDING = 200,
-    /**
-     * AUTH_PASSWORD_RESET - Firebase auth (SendGrid): templates receive the Firebase-generated action URL from Admin SDK.
-     * Target: End User
-     */
     AUTH_PASSWORD_RESET = 300,
     AUTH_EMAIL_VERIFICATION = 301,
+    AUTH_MFA_ENROLLED = 302,
+    AUTH_MFA_RESET = 303,
     /** ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED - Elite Club Membership Request */
     ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED = 401,
     ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED = 402,
