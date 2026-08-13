@@ -56,9 +56,13 @@ enum EmailTemplateType {
     PARTNER_ONBOARDING = 200; // Initial partner onboarding when a new partner is created by TX admin
 
     // Firebase auth (SendGrid): templates receive the Firebase-generated action URL from Admin SDK.
-    // Target: End User
     AUTH_PASSWORD_RESET = 300;
     AUTH_EMAIL_VERIFICATION = 301;
+    AUTH_MFA_ENROLLED = 302; 
+
+    ADMIN_AUTH_PASSWORD_RESET = 310;
+    ADMIN_AUTH_EMAIL_VERIFICATION = 311;
+    ADMIN_MFA_ENROLLED = 312; 
 
     // Elite Club Membership Request
     ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED = 401;

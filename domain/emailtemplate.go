@@ -50,6 +50,11 @@ type AuthActionEmailData struct {
 	UserName   string
 }
 
+type MFAEnrolledEmailData struct {
+	UserName  string
+	UserEmail string
+}
+
 type EliteClubMembershipEmailData struct {
 }
 
@@ -72,6 +77,10 @@ var EmailTemplateDataRegistry = map[emailtemplate.EmailTemplateType]reflect.Type
 	// Firebase auth (SendGrid)
 	emailtemplate.EmailTemplateType_AUTH_PASSWORD_RESET:     reflect.TypeOf(AuthActionEmailData{}),
 	emailtemplate.EmailTemplateType_AUTH_EMAIL_VERIFICATION: reflect.TypeOf(AuthActionEmailData{}),
+	emailtemplate.EmailTemplateType_AUTH_MFA_ENROLLED:       reflect.TypeOf(MFAEnrolledEmailData{}),
+	emailtemplate.EmailTemplateType_ADMIN_AUTH_PASSWORD_RESET:     reflect.TypeOf(AuthActionEmailData{}),
+	emailtemplate.EmailTemplateType_ADMIN_AUTH_EMAIL_VERIFICATION: reflect.TypeOf(AuthActionEmailData{}),
+	emailtemplate.EmailTemplateType_ADMIN_MFA_ENROLLED:            reflect.TypeOf(MFAEnrolledEmailData{}),
 	// Elite Club Membership Request
 	emailtemplate.EmailTemplateType_ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED: reflect.TypeOf(EliteClubMembershipEmailData{}),
 	emailtemplate.EmailTemplateType_ELITE_CLUB_MEMBERSHIP_REQUEST_REJECTED: reflect.TypeOf(EliteClubMembershipEmailData{}),
