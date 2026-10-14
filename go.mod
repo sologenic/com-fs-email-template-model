@@ -1,6 +1,6 @@
 module github.com/sologenic/com-fs-email-template-model
 
-go 1.26.2
+go 1.27.1
 
 require (
 	github.com/sologenic/com-fs-utils-internal-lib/go/grpc-client v0.0.0-20260429144456-e78936df6303
