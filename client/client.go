@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+	"sync"
 
 	grpcdef "github.com/sologenic/com-fs-email-template-model"
 	grpcclient "github.com/sologenic/com-fs-utils-internal-lib/go/grpc-client"
@@ -14,6 +15,7 @@ const (
 var (
 	client    grpcdef.EmailTemplateServiceClient
 	grpClient *grpcclient.GRPCClient
+	once      sync.Once
 )
 
 func initClient() {
@@ -22,15 +24,11 @@ func initClient() {
 }
 
 func Client() grpcdef.EmailTemplateServiceClient {
-	if client == nil {
-		initClient()
-	}
+	once.Do(initClient)
 	return client
 }
 
 func AuthCtx(ctx context.Context) context.Context {
-	if grpClient == nil {
-		initClient()
-	}
+	once.Do(initClient)
 	return grpClient.AuthCtx(ctx)
 }
