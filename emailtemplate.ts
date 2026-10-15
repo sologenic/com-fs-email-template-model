@@ -90,11 +90,9 @@ export function emailTemplateTypeFromJSON(object: any): EmailTemplateType {
     case 302:
     case "AUTH_MFA_ENROLLED":
       return EmailTemplateType.AUTH_MFA_ENROLLED;
+    case 303:
     case "AUTH_MFA_RESET":
       return EmailTemplateType.AUTH_MFA_RESET;
-    case 310:
-    case 311:
-    case 312:
     case 401:
     case "ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED":
       return EmailTemplateType.ELITE_CLUB_MEMBERSHIP_REQUEST_APPROVED;
