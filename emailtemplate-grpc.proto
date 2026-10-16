@@ -6,7 +6,6 @@ option go_package = "github.com/sologenic/com-fs-email-template-model;emailtempl
 
 import "google/protobuf/empty.proto";
 import "emailtemplate.proto";
-import "sologenic/com-fs-utils-lib/models/metadata/metadata.proto";
 
 service EmailTemplateService {
     rpc Get(EmailTemplateID) returns (EmailTemplate) {}
@@ -22,11 +21,13 @@ service EmailTemplateService {
 message EmailTemplateID {
     EmailTemplateType EmailTemplateType = 1;
     optional string OrganizationID = 2;
-    optional metadata.Network Network = 3;
+    reserved 3;
+    reserved "Network";
 }
 
 message Filter { 
     optional EmailTemplateType Type = 1;
     optional string OrganizationID = 2;
-    optional metadata.Network Network = 3;
+    reserved 3;
+    reserved "Network";
 }
