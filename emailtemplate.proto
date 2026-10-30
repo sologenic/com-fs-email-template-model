@@ -6,9 +6,8 @@ option go_package = "github.com/sologenic/com-fs-email-template-model;emailtempl
 
 import "google/protobuf/timestamp.proto";
 import "sologenic/com-fs-utils-lib/models/audit/audit.proto";
-import "sologenic/com-fs-utils-lib/models/metadata/metadata.proto";
 
-// Key: OrganizationID-Network-EmailTemplateType
+// Key: OrganizationID_0_EmailTemplateType
 message EmailTemplate {
     EmailTemplateDetails EmailTemplate = 1;
     audit.Audit Audit = 3;
@@ -25,10 +24,10 @@ message EmailTemplateDetails {
     // @inject_tags: datastore:",noindex"
     string PlainText = 7; // fallback for HTML content
     
-    // Non-standard metadata: Network here is optional. In other cases it is almost always required
     google.protobuf.Timestamp CreatedAt = 8;
     google.protobuf.Timestamp UpdatedAt = 9;
-    optional metadata.Network Network = 10;
+    reserved 10;
+    reserved "Network";
 }
 
 enum EmailTemplateType {

@@ -8,7 +8,6 @@
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
-import { Network, networkFromJSON, networkToJSON } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 
 export const protobufPackage = "emailtemplate";
 
@@ -148,7 +147,7 @@ export function emailTemplateTypeToJSON(object: EmailTemplateType): string {
   }
 }
 
-/** Key: OrganizationID-Network-EmailTemplateType */
+/** Key: OrganizationID_0_EmailTemplateType */
 export interface EmailTemplate {
   EmailTemplate: EmailTemplateDetails | undefined;
   Audit: Audit | undefined;
@@ -170,10 +169,8 @@ export interface EmailTemplateDetails {
   Description: string;
   /** @inject_tags: datastore:",noindex" */
   PlainText: string;
-  /** Non-standard metadata: Network here is optional. In other cases it is almost always required */
   CreatedAt: Date | undefined;
   UpdatedAt: Date | undefined;
-  Network?: Network | undefined;
 }
 
 export interface EmailTemplates {
@@ -267,7 +264,6 @@ function createBaseEmailTemplateDetails(): EmailTemplateDetails {
     PlainText: "",
     CreatedAt: undefined,
     UpdatedAt: undefined,
-    Network: undefined,
   };
 }
 
@@ -299,9 +295,6 @@ export const EmailTemplateDetails = {
     }
     if (message.UpdatedAt !== undefined) {
       Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(74).fork()).ldelim();
-    }
-    if (message.Network !== undefined) {
-      writer.uint32(80).int32(message.Network);
     }
     return writer;
   },
@@ -376,13 +369,6 @@ export const EmailTemplateDetails = {
 
           message.UpdatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           continue;
-        case 10:
-          if (tag !== 80) {
-            break;
-          }
-
-          message.Network = reader.int32() as any;
-          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -403,7 +389,6 @@ export const EmailTemplateDetails = {
       PlainText: isSet(object.PlainText) ? globalThis.String(object.PlainText) : "",
       CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
       UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
-      Network: isSet(object.Network) ? networkFromJSON(object.Network) : undefined,
     };
   },
 
@@ -436,9 +421,6 @@ export const EmailTemplateDetails = {
     if (message.UpdatedAt !== undefined) {
       obj.UpdatedAt = message.UpdatedAt.toISOString();
     }
-    if (message.Network !== undefined) {
-      obj.Network = networkToJSON(message.Network);
-    }
     return obj;
   },
 
@@ -456,7 +438,6 @@ export const EmailTemplateDetails = {
     message.PlainText = object.PlainText ?? "";
     message.CreatedAt = object.CreatedAt ?? undefined;
     message.UpdatedAt = object.UpdatedAt ?? undefined;
-    message.Network = object.Network ?? undefined;
     return message;
   },
 };

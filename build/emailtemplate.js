@@ -7,7 +7,6 @@
 import _m0 from "protobufjs/minimal";
 import { Timestamp } from "./google/protobuf/timestamp";
 import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
-import { networkFromJSON, networkToJSON } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export const protobufPackage = "emailtemplate";
 export var EmailTemplateType;
 (function (EmailTemplateType) {
@@ -222,7 +221,6 @@ function createBaseEmailTemplateDetails() {
         PlainText: "",
         CreatedAt: undefined,
         UpdatedAt: undefined,
-        Network: undefined,
     };
 }
 export const EmailTemplateDetails = {
@@ -253,9 +251,6 @@ export const EmailTemplateDetails = {
         }
         if (message.UpdatedAt !== undefined) {
             Timestamp.encode(toTimestamp(message.UpdatedAt), writer.uint32(74).fork()).ldelim();
-        }
-        if (message.Network !== undefined) {
-            writer.uint32(80).int32(message.Network);
         }
         return writer;
     },
@@ -320,12 +315,6 @@ export const EmailTemplateDetails = {
                     }
                     message.UpdatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
                     continue;
-                case 10:
-                    if (tag !== 80) {
-                        break;
-                    }
-                    message.Network = reader.int32();
-                    continue;
             }
             if ((tag & 7) === 4 || tag === 0) {
                 break;
@@ -345,7 +334,6 @@ export const EmailTemplateDetails = {
             PlainText: isSet(object.PlainText) ? globalThis.String(object.PlainText) : "",
             CreatedAt: isSet(object.CreatedAt) ? fromJsonTimestamp(object.CreatedAt) : undefined,
             UpdatedAt: isSet(object.UpdatedAt) ? fromJsonTimestamp(object.UpdatedAt) : undefined,
-            Network: isSet(object.Network) ? networkFromJSON(object.Network) : undefined,
         };
     },
     toJSON(message) {
@@ -377,16 +365,13 @@ export const EmailTemplateDetails = {
         if (message.UpdatedAt !== undefined) {
             obj.UpdatedAt = message.UpdatedAt.toISOString();
         }
-        if (message.Network !== undefined) {
-            obj.Network = networkToJSON(message.Network);
-        }
         return obj;
     },
     create(base) {
         return EmailTemplateDetails.fromPartial(base !== null && base !== void 0 ? base : {});
     },
     fromPartial(object) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         const message = createBaseEmailTemplateDetails();
         message.Type = (_a = object.Type) !== null && _a !== void 0 ? _a : 0;
         message.OrganizationID = (_b = object.OrganizationID) !== null && _b !== void 0 ? _b : undefined;
@@ -397,7 +382,6 @@ export const EmailTemplateDetails = {
         message.PlainText = (_g = object.PlainText) !== null && _g !== void 0 ? _g : "";
         message.CreatedAt = (_h = object.CreatedAt) !== null && _h !== void 0 ? _h : undefined;
         message.UpdatedAt = (_j = object.UpdatedAt) !== null && _j !== void 0 ? _j : undefined;
-        message.Network = (_k = object.Network) !== null && _k !== void 0 ? _k : undefined;
         return message;
     },
 };

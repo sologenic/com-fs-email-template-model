@@ -30,7 +30,7 @@ Key features of the email template model include:
 
 ### Overview
 
-The `emailtemplate.proto` file defines the core emailtemplate model for email template management. It provides message types for representing emailtemplate data and operations. The file integrates with external utility libraries: `metadata.proto`, `audit.proto`.
+The `emailtemplate.proto` file defines the core emailtemplate model for email template management. It provides message types for representing emailtemplate data and operations. The file integrates with external utility libraries: `audit.proto`.
 
 ### Messages
 
@@ -51,7 +51,7 @@ The `EmailTemplate` message provides emailtemplate data and operations.
 - Updating emailtemplate data
 
 **Important Notes:**
-- This message provides the emailtemplate representation
+- Datastore key format: `OrganizationID_0_EmailTemplateType` (see comment on `EmailTemplate` in `emailtemplate.proto`)
 
 #### EmailTemplateDetails {#emailtemplatedetails}
 
@@ -70,7 +70,6 @@ The `EmailTemplateDetails` message contains all the core information about a ema
 | PlainText | `string` | Required | fallback for HTML content |
 | CreatedAt | `google.protobuf.Timestamp` | Required | Timestamp information |
 | UpdatedAt | `google.protobuf.Timestamp` | Required | Timestamp information |
-| Network | `metadata.Network` | Optional | Metadata information including network and version details |
 
 **Use Cases:**
 - Creating new emailtemplate records with complete information
@@ -146,5 +145,4 @@ For additional information and support:
 - See `README.md` for project setup, installation, and usage instructions
 - Refer to the Protocol Buffer definitions in `emailtemplate.proto` for the authoritative source of truth
 - Check the imported utility libraries for details on related types:
-  - `sologenic/com-fs-utils-lib/models/metadata/metadata.proto`
   - `sologenic/com-fs-utils-lib/models/audit/audit.proto`

@@ -1,6 +1,5 @@
 import _m0 from "protobufjs/minimal";
 import { Audit } from "./sologenic/com-fs-utils-lib/models/audit/audit";
-import { Network } from "./sologenic/com-fs-utils-lib/models/metadata/metadata";
 export declare const protobufPackage = "emailtemplate";
 export declare enum EmailTemplateType {
     NOT_USED_EMAIL_TEMPLATE_TYPE = 0,
@@ -37,7 +36,7 @@ export declare enum EmailTemplateType {
 }
 export declare function emailTemplateTypeFromJSON(object: any): EmailTemplateType;
 export declare function emailTemplateTypeToJSON(object: EmailTemplateType): string;
-/** Key: OrganizationID-Network-EmailTemplateType */
+/** Key: OrganizationID_0_EmailTemplateType */
 export interface EmailTemplate {
     EmailTemplate: EmailTemplateDetails | undefined;
     Audit: Audit | undefined;
@@ -56,10 +55,8 @@ export interface EmailTemplateDetails {
     Description: string;
     /** @inject_tags: datastore:",noindex" */
     PlainText: string;
-    /** Non-standard metadata: Network here is optional. In other cases it is almost always required */
     CreatedAt: Date | undefined;
     UpdatedAt: Date | undefined;
-    Network?: Network | undefined;
 }
 export interface EmailTemplates {
     EmailTemplates: EmailTemplate[];
@@ -80,7 +77,6 @@ export declare const EmailTemplate: {
             PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
         } | undefined;
         Audit?: {
             ChangedBy?: string | undefined;
@@ -98,7 +94,6 @@ export declare const EmailTemplate: {
             PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
         } & {
             Type?: EmailTemplateType | undefined;
             OrganizationID?: string | undefined;
@@ -109,7 +104,6 @@ export declare const EmailTemplate: {
             PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
         } & { [K in Exclude<keyof I["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
         Audit?: ({
             ChangedBy?: string | undefined;
@@ -132,7 +126,6 @@ export declare const EmailTemplate: {
             PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
         } | undefined;
         Audit?: {
             ChangedBy?: string | undefined;
@@ -150,7 +143,6 @@ export declare const EmailTemplate: {
             PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
         } & {
             Type?: EmailTemplateType | undefined;
             OrganizationID?: string | undefined;
@@ -161,7 +153,6 @@ export declare const EmailTemplate: {
             PlainText?: string | undefined;
             CreatedAt?: Date | undefined;
             UpdatedAt?: Date | undefined;
-            Network?: Network | undefined;
         } & { [K_3 in Exclude<keyof I_1["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
         Audit?: ({
             ChangedBy?: string | undefined;
@@ -189,7 +180,6 @@ export declare const EmailTemplateDetails: {
         PlainText?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
-        Network?: Network | undefined;
     } & {
         Type?: EmailTemplateType | undefined;
         OrganizationID?: string | undefined;
@@ -200,7 +190,6 @@ export declare const EmailTemplateDetails: {
         PlainText?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
-        Network?: Network | undefined;
     } & { [K in Exclude<keyof I, keyof EmailTemplateDetails>]: never; }>(base?: I | undefined): EmailTemplateDetails;
     fromPartial<I_1 extends {
         Type?: EmailTemplateType | undefined;
@@ -212,7 +201,6 @@ export declare const EmailTemplateDetails: {
         PlainText?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
-        Network?: Network | undefined;
     } & {
         Type?: EmailTemplateType | undefined;
         OrganizationID?: string | undefined;
@@ -223,7 +211,6 @@ export declare const EmailTemplateDetails: {
         PlainText?: string | undefined;
         CreatedAt?: Date | undefined;
         UpdatedAt?: Date | undefined;
-        Network?: Network | undefined;
     } & { [K_1 in Exclude<keyof I_1, keyof EmailTemplateDetails>]: never; }>(object: I_1): EmailTemplateDetails;
 };
 export declare const EmailTemplates: {
@@ -243,7 +230,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -263,7 +249,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -281,7 +266,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -299,7 +283,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } & {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -310,7 +293,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } & { [K in Exclude<keyof I["EmailTemplates"][number]["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
             Audit?: ({
                 ChangedBy?: string | undefined;
@@ -332,7 +314,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -353,7 +334,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -373,7 +353,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -391,7 +370,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
@@ -409,7 +387,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } & {
                 Type?: EmailTemplateType | undefined;
                 OrganizationID?: string | undefined;
@@ -420,7 +397,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } & { [K_5 in Exclude<keyof I_1["EmailTemplates"][number]["EmailTemplate"], keyof EmailTemplateDetails>]: never; }) | undefined;
             Audit?: ({
                 ChangedBy?: string | undefined;
@@ -442,7 +418,6 @@ export declare const EmailTemplates: {
                 PlainText?: string | undefined;
                 CreatedAt?: Date | undefined;
                 UpdatedAt?: Date | undefined;
-                Network?: Network | undefined;
             } | undefined;
             Audit?: {
                 ChangedBy?: string | undefined;
